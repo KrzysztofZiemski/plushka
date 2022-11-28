@@ -1,16 +1,16 @@
-import { GetStaticProps } from "next";
+import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
 import { getProducts } from "../api/products";
 import { Product } from "../types/product";
 import Image from "next/image";
 import { datoCMSImageLoader } from "../utils/next";
+import slugify from "slugify";
 
 interface Props {
   products: Product[];
 }
 
-export default function Home({ products }: Props) {
-  console.log(products);
+export default function CategoryPage({ products }: Props) {
   return (
     <>
       <Head>
@@ -45,8 +45,26 @@ export default function Home({ products }: Props) {
   );
 }
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticPaths: GetStaticPaths = async () => {
   const products = await getProducts();
+
+  const categories: Record<string, string> = {};
+  products.forEach((el) => {
+    categories[el.category] = el.category;
+  });
+
+  return {
+    paths: Object.entries(categories).map((entry) => ({
+      params: { id: entry[0] },
+    })),
+    fallback: false, // can also be true or 'blocking'
+  };
+};
+
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const category = params?.category;
+
+  const products = category ? await getProducts(category as string) : [];
   return {
     props: { products },
   };
