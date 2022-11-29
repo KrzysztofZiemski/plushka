@@ -10,7 +10,6 @@ interface Props {
 }
 
 export default function Home({ products }: Props) {
-  console.log(products);
   return (
     <>
       <Head>
@@ -20,7 +19,7 @@ export default function Home({ products }: Props) {
           content="Rękodzieło z pasją. Przytulanki, zabawki, biżuteria."
         />
       </Head>
-      <div style={{ height: 400, position: "relative" }}>
+      <div>
         {products.map((el) => (
           <div key={el.id}>
             <div
