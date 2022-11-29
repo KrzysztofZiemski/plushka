@@ -1,8 +1,20 @@
-interface ProductColor {
-  id: string;
-  colorsBase: string;
+export enum Color {
+  black = "czarny",
+  blue = "niebieski",
+  yellow = "żółty",
+  white = "biały",
+  brown = "brązowy",
+  violet = "fioletowy",
+  orange = "pomarańczowy",
+  green = "zielony",
+  pink = "różowy",
 }
-interface ProductPhoto {
+
+export interface ProductColor {
+  id: string;
+  colorsBase: Color;
+}
+export interface ProductPhoto {
   id: string;
   alt: string;
   url: string;
@@ -19,4 +31,5 @@ export interface Product {
   tags: string;
   photos: ProductPhoto[];
   category: ProductCategory;
+  textDescription: string;
 }

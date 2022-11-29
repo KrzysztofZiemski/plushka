@@ -4,6 +4,7 @@ import { getProducts } from "../api/products";
 import { Product } from "../types/product";
 import Image from "next/image";
 import { datoCMSImageLoader } from "../utils/next";
+import ProductListItem from "../components/molecules/ProductListItem";
 
 interface Props {
   products: Product[];
@@ -20,26 +21,8 @@ export default function Home({ products }: Props) {
         />
       </Head>
       <div>
-        {products.map((el) => (
-          <div key={el.id}>
-            <div
-              style={{
-                position: "relative",
-                height: "400px",
-              }}
-            >
-              {el.photos.map((photo) => (
-                <Image
-                  loader={datoCMSImageLoader}
-                  fill
-                  key={photo.id}
-                  src={photo.url}
-                  alt={photo.alt}
-                  style={{ objectFit: "contain" }}
-                />
-              ))}
-            </div>
-          </div>
+        {products.map((item) => (
+          <ProductListItem key={item.id} item={item} />
         ))}
       </div>
     </>
@@ -48,6 +31,7 @@ export default function Home({ products }: Props) {
 
 export const getStaticProps: GetStaticProps = async () => {
   const products = await getProducts();
+
   return {
     props: { products },
   };

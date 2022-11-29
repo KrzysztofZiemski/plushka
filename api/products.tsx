@@ -33,6 +33,9 @@ export const getProducts = async (category?: string): Promise<Product[]> => {
       }
     `,
   });
+
+  const products = result.data.allProducts;
+  if (!category) return products;
   return (result.data.allProducts as Product[]).filter(
     (el) => el.category === category
   );
