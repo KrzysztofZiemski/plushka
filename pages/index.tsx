@@ -20,7 +20,7 @@ export default function Home({ products }: Props) {
           content="Rękodzieło z pasją. Przytulanki, zabawki, biżuteria."
         />
       </Head>
-      <div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 lg:grid-cols-3">
         {products.map((item) => (
           <ProductListItem key={item.id} item={item} />
         ))}

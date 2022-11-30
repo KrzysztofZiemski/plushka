@@ -14,13 +14,13 @@ const nextConfig = {
       {
         protocol: "https",
         hostname: "datocms-assets.com",
-        port: "",
+        port: "8080",
         pathname: "/47033/**",
       },
       {
         protocol: "https",
         hostname: "images.unsplash.com",
-        port: "",
+        port: "8080",
       },
     ],
     // domains: [

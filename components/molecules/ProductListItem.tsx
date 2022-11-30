@@ -15,8 +15,8 @@ export default function ProductListItem({
   const mainPhoto = photos[0];
 
   return (
-    <div className={`main-shadow mb-6 ${className || ""}`} {...props}>
-      <div className="h-60 w-full relative overflow-hidden">
+    <div className={`main-shadow ${className || ""}`} {...props}>
+      <div className="h-96 w-full relative overflow-hidden">
         {mainPhoto && (
           <Image
             loader={datoCMSImageLoader}
@@ -24,13 +24,11 @@ export default function ProductListItem({
             src={mainPhoto.url}
             alt={mainPhoto.alt}
             fill
-            objectFit="cover"
-
-            // className="border-width: 8px border-color: rgb(0 0 0)"
+            className="object-cover w-full"
           />
         )}
       </div>
-      <div className="px-5">
+      <div className="px-5 mt-5">
         <h2>{name}</h2>
         <p>{shortDescription}</p>
         <div className="font-medium text-lg text-right mb-9">{`${price} zł`}</div>
