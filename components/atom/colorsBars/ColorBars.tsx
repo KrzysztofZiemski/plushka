@@ -24,7 +24,11 @@ export default function ColorBars({ colors, ...props }: Props) {
         const color = dictionaryColors[el.colorsBase];
 
         return color ? (
-          <div className="w-2.5 h-2.5" style={{ backgroundColor: color }} />
+          <div
+            className="w-2.5 h-2.5"
+            style={{ backgroundColor: color }}
+            key={el.id}
+          />
         ) : null;
       })}
     </div>

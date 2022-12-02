@@ -13,7 +13,7 @@ export default function MainInput({
   return (
     <div className={`relative  ${className || ""}`}>
       <input
-        className={`h-9 w-full rounded-3xl border-2 border-primary hover:border-primary ${
+        className={`h-9 w-full rounded-3xl border-2 border-primary hover:border-primary md:h-11 md:rounded-2xl  md:border-grey ${
           AdormentEnd ? "pl-3 pr-8" : "px-3"
         } outline-0 leading-9 text-base ${inputClassName || ""}`}
         {...props}
