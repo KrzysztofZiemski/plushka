@@ -28,7 +28,7 @@ export default function TopBar() {
           className={styles.imageContainerSize}
         />
       </Link>
-      <div className="flex grow gap-3 max-w-sm md:hidden">
+      <div className="flex grow gap-3 max-w-sm md:hidden ">
         <MainInput
           className="grow "
           AdormentEnd={<SearchIcon />}
@@ -45,9 +45,12 @@ export default function TopBar() {
             <div className="flex overflow-hidden w-10/12 lg:w-10/12">
               <Image src={crochetImage} alt="crochet" width={91} height={73} />
               <div
-                className="grow h-px bg-black self-end"
+                className="grow h-px bg-black self-end "
                 style={{
                   marginBottom: "1.6px",
+                  marginLeft: "-1px",
+                  marginRight: "-1px",
+                  filter: "blur(.6px)",
                 }}
               ></div>
               <Image
@@ -64,7 +67,7 @@ export default function TopBar() {
           </div>
           <div>
             <MainInput
-              className="grow w-1/2 ml-auto"
+              className="grow w-1/2 ml-auto max-w-sm"
               AdormentEnd={<SearchIcon />}
               value={search}
               onChange={handleChange}
