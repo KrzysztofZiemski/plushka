@@ -20,7 +20,7 @@ export default function TopBar() {
   };
 
   return (
-    <div className="main-shadow w-full flex items-center justify-between overflow-hidden gap-3 px-2 py-2 mb-3 md:items-stretch sticky bg-white z-10 top-0 md:px-6 md:py-6">
+    <div className="main-shadow w-full flex items-center justify-between overflow-hidden gap-3 px-2 py-2 mb-3 md:items-stretch sticky bg-white z-10 top-0 md:px-6 md:py-6 md:shadow-none md:static">
       <Link href="/" className="flex items-center shrink-0 ">
         <Image
           src={logo}
@@ -42,17 +42,20 @@ export default function TopBar() {
       <div className="flex hidden grow md:flex overflow-hidden">
         <div className="flex flex-col w-full">
           <div className="flex items-start justify-between">
-            <div className="flex overflow-hidden w-10/12 lg:w-10/12">
+            <div className="flex overflow-hidden w-10/12  lg:w-10/12 ">
               <Image src={crochetImage} alt="crochet" width={91} height={73} />
               <div
-                className="grow h-px bg-black self-end "
+                className="grow border-b border-black self-end text-center leading-10 text-lg"
                 style={{
                   marginBottom: "1.6px",
                   marginLeft: "-1px",
                   marginRight: "-1px",
                   filter: "blur(.6px)",
                 }}
-              ></div>
+              >
+                Życie jest zbyt krótkie by otaczać się masówką. Postaw na
+                Handmade!
+              </div>
               <Image
                 src={crochetReverse}
                 alt="crochet"

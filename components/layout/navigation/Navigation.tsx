@@ -26,7 +26,7 @@ const listRoutes = [
 ];
 export default function Navigation() {
   return (
-    <List className="flex px-2 mb-5 w-full justify-center">
+    <List className="flex px-2 my-5 w-full justify-center">
       {listRoutes.map(({ label, path }) => (
         <ListElement key={path} style={{ marginRight: "2%", marginLeft: "2%" }}>
           <Link
