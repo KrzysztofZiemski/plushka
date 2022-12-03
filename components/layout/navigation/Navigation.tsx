@@ -3,20 +3,11 @@ import React from "react";
 import { getPath } from "../../../utils/routing";
 import List from "../../atom/list/List";
 import ListElement from "../../atom/list/ListElement";
-const listRoutes = [
-  {
-    path: getPath("category")("biżuteria"),
-    label: "Biżuteria",
-  },
-  {
-    path: getPath("category")("maskotki"),
-    label: "Maskotki pluszowe",
-  },
-  {
-    path: getPath("category")("chusty"),
-    label: "Chusty",
-  },
-];
+import { listRoutes } from "./helpers";
+
+
+
+
 export default function Navigation() {
   return (
     <List className="flex px-2 my-5 w-full justify-center">

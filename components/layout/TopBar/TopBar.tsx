@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ChangeEvent, useMemo } from "react";
+import { ChangeEvent, useCallback, useMemo, useState } from "react";
 import crochetReverse from "../../../assets/crochet-reverse.png";
 import crochetImage from "../../../assets/crochet.png";
 import { MenuBurgerIcon, SearchIcon } from "../../../assets/icons";
@@ -18,6 +18,7 @@ import Navigation from "../navigation/Navigation";
 import styles from "./topBar.module.css";
 import { useRouter } from "next/router";
 import { getPath } from "../../../utils/routing";
+import MobileNavigation from "../navigation/MobileNavigation";
 
 interface Props {
   products: Product[];
@@ -25,6 +26,7 @@ interface Props {
 export default function TopBar({ products }: Props) {
   const router = useRouter();
   const { search, setSearch } = useSearch();
+  const [isMobileNavigationOpen, setIsMobileNavigationOpen] = useState(false);
 
   const filtered = useMemo(() => {
     if (search.length < 3) return [];
@@ -42,8 +44,12 @@ export default function TopBar({ products }: Props) {
     router.push(getPath("product-detail")(productName));
   };
 
-  const handleToggleMenu = () => {};
+  const handleToggleMenu = () => setIsMobileNavigationOpen((prev) => !prev);
 
+  const handleClose = useCallback(
+    () => setIsMobileNavigationOpen(false),
+    [setIsMobileNavigationOpen]
+  );
   return (
     <div className="main-shadow w-full flex items-center justify-between gap-3 px-2 py-2 mb-3 md:items-stretch sticky bg-white z-10 top-0 md:px-6 md:py-6 md:shadow-none md:static">
       <Link href="/" className="flex items-center shrink-0 ">
@@ -85,6 +91,10 @@ export default function TopBar({ products }: Props) {
         >
           <MenuBurgerIcon />
         </TextButton>
+        <MobileNavigation
+          isOpen={isMobileNavigationOpen}
+          onClose={handleClose}
+        />
       </div>
       <div className="flex hidden grow md:flex">
         <div className="flex flex-col w-full">
