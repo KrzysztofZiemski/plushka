@@ -13,17 +13,19 @@ import TextButton from "../../atom/button/textButton";
 import MainInput from "../../atom/input/MainInput";
 import List from "../../atom/list/List";
 import FavouriteButton from "../../atom/favouriteButton/FavouriteButton";
-import HintListItem from "../components/HintListItem";
+import HintListItem from "../../molecules/HintListItem";
 import Navigation from "../navigation/Navigation";
 import styles from "./topBar.module.css";
+import { useRouter } from "next/router";
+import { getPath } from "../../../utils/routing";
 
 interface Props {
   products: Product[];
 }
 export default function TopBar({ products }: Props) {
-  const handleToggleMenu = () => {};
+  const router = useRouter();
   const { search, setSearch } = useSearch();
-  // const { list } = useFavourite();
+
   const filtered = useMemo(() => {
     if (search.length < 3) return [];
     return products
@@ -35,6 +37,12 @@ export default function TopBar({ products }: Props) {
   const handleChange = ({ target }: ChangeEvent<HTMLInputElement>) => {
     setSearch(target.value);
   };
+
+  const handleGoToProduct = (productName: string) => {
+    router.push(getPath("product-detail")(productName));
+  };
+
+  const handleToggleMenu = () => {};
 
   return (
     <div className="main-shadow w-full flex items-center justify-between gap-3 px-2 py-2 mb-3 md:items-stretch sticky bg-white z-10 top-0 md:px-6 md:py-6 md:shadow-none md:static">
@@ -57,7 +65,13 @@ export default function TopBar({ products }: Props) {
           <div className={`relative ${styles.listContainer} `}>
             <List className="absolute ease-in duration-100 rounded overflow-auto box-shadow max-h-60 top-0 inset-x-0 z-20 bg-white">
               {filtered.map((product) => {
-                return <HintListItem product={product} key={product.id} />;
+                return (
+                  <HintListItem
+                    product={product}
+                    key={product.id}
+                    onClick={() => handleGoToProduct(product.name)}
+                  />
+                );
               })}
             </List>
           </div>
@@ -113,7 +127,13 @@ export default function TopBar({ products }: Props) {
             <div className={`relative ${styles.listContainer} `}>
               <List className="absolute ease-in duration-100 rounded overflow-auto box-shadow max-h-60 top-0 inset-x-0 z-20 bg-white">
                 {filtered.map((product) => {
-                  return <HintListItem product={product} key={product.id} />;
+                  return (
+                    <HintListItem
+                      product={product}
+                      key={product.id}
+                      onClick={() => handleGoToProduct(product.name)}
+                    />
+                  );
                 })}
               </List>
             </div>

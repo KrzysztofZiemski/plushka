@@ -1,28 +1,21 @@
 import Link from "next/link";
 import React from "react";
+import { getPath } from "../../../utils/routing";
 import List from "../../atom/list/List";
 import ListElement from "../../atom/list/ListElement";
 const listRoutes = [
-  // {
-  //   path: "/latest",
-  //   label: "Najnowsze prace",
-  // },
   {
-    path: "/jewelery",
+    path: getPath("category")("biżuteria"),
     label: "Biżuteria",
   },
   {
-    path: "/plush",
+    path: getPath("category")("maskotki"),
     label: "Maskotki pluszowe",
   },
   {
-    path: "/scarves",
+    path: getPath("category")("chusty"),
     label: "Chusty",
   },
-  // {
-  //   path: "/courses",
-  //   label: "Kursy",
-  // },
 ];
 export default function Navigation() {
   return (

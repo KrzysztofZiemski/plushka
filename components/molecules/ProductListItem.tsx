@@ -3,6 +3,8 @@ import { Product } from "../../types/product";
 import { datoCMSImageLoader, isClient } from "../../utils/next";
 import Image from "next/image";
 import ColorBars from "../atom/colorsBars/ColorBars";
+import { useRouter } from "next/router";
+import { getPath } from "../../utils/routing";
 
 interface Props extends HTMLAttributes<HTMLDivElement> {
   item: Product;
@@ -12,6 +14,10 @@ export default function ProductListItem({
   className,
   ...props
 }: Props) {
+  const router = useRouter();
+
+  const goToProductDeatail = () => router.push(getPath("product-detail")(name));
+
   const mainPhoto = photos[0];
 
   return (
@@ -29,7 +35,12 @@ export default function ProductListItem({
         )}
       </div>
       <div className="flex flex-col grow px-5 mt-5">
-        <h2>{name}</h2>
+        <h2
+          className="cursor-pointer hover:text-primary "
+          onClick={goToProductDeatail}
+        >
+          {name}
+        </h2>
         <p>{shortDescription}</p>
         <div className="font-medium text-lg text-right mb-9">{`${price} zł`}</div>
         <ColorBars
