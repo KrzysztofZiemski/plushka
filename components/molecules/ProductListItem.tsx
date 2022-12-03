@@ -15,8 +15,8 @@ export default function ProductListItem({
   const mainPhoto = photos[0];
 
   return (
-    <div className={`main-shadow ${className || ""}`} {...props}>
-      <div className="h-96 w-full relative overflow-hidden">
+    <div className={`flex flex-col main-shadow ${className || ""}`} {...props}>
+      <div className="h-96 w-auto w-full relative overflow-hidden">
         {mainPhoto && (
           <Image
             loader={datoCMSImageLoader}
@@ -28,13 +28,14 @@ export default function ProductListItem({
           />
         )}
       </div>
-      <div className="px-5 mt-5">
+      <div className="flex flex-col grow px-5 mt-5">
         <h2>{name}</h2>
         <p>{shortDescription}</p>
         <div className="font-medium text-lg text-right mb-9">{`${price} zł`}</div>
-        <div className="py-4 border-y border-grey flex justify-end ">
-          <ColorBars colors={productColors} />
-        </div>
+        <ColorBars
+          colors={productColors}
+          className="mt-auto py-4 border-t border-grey flex justify-end mt-auto"
+        />
       </div>
     </div>
   );

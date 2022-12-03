@@ -9,6 +9,7 @@ import { SearchProvider } from "../context/search";
 import "../styles/globals.css";
 
 export default function App({ Component, pageProps }: AppProps) {
+  console.log("pageProps", pageProps);
   return (
     <ApolloProvider client={client}>
       <SearchProvider>
@@ -36,7 +37,7 @@ export default function App({ Component, pageProps }: AppProps) {
           <meta name="theme-color" content="#ffffff" />
         </Head>
         <div>
-          <TopBar />
+          <TopBar products={pageProps.products || []} />
           <main className="max-w-6xl mx-auto">
             <Component {...pageProps} />
           </main>

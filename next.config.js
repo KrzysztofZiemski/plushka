@@ -1,5 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  i18n: {
+    locales: ["pl"],
+    defaultLocale: "pl",
+  },
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/i,

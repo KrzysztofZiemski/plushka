@@ -4,7 +4,12 @@
   height: 60px;
   width: auto;
 }
-
+.listContainer ul{
+  max-height: 0;
+}
+.searchContainer:focus-within .listContainer ul{
+  max-height: 300px;
+}
 
 @media (min-width: 768px) {
   .imageContainerSize {
@@ -14,5 +19,8 @@
 @media (min-width: 1024px) {
   .imageContainerSize {
     height: 200px;
+  }
+  .searchContainer:focus-within .listContainer ul{
+    max-height: 600px;
   }
 }
