@@ -3,10 +3,10 @@ import React from "react";
 import List from "../../atom/list/List";
 import ListElement from "../../atom/list/ListElement";
 const listRoutes = [
-  {
-    path: "/latest",
-    label: "Najnowsze prace",
-  },
+  // {
+  //   path: "/latest",
+  //   label: "Najnowsze prace",
+  // },
   {
     path: "/jewelery",
     label: "Biżuteria",
@@ -19,10 +19,10 @@ const listRoutes = [
     path: "/scarves",
     label: "Chusty",
   },
-  {
-    path: "/courses",
-    label: "Kursy",
-  },
+  // {
+  //   path: "/courses",
+  //   label: "Kursy",
+  // },
 ];
 export default function Navigation() {
   return (

@@ -1,7 +1,7 @@
 import { Product } from "../types/product";
 
 export const productFilter = (item: Product, phrase: string) => {
-  const { category, name, photos, tags, shortDescription } = item;
+  const { category, name, shortDescription } = item;
   let points = 0;
   const searchWords = phrase.toLocaleLowerCase().trim().split(" ");
   if (name.includes(phrase)) return 50;

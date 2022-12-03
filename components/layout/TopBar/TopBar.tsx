@@ -12,8 +12,7 @@ import { datoCMSImageLoader } from "../../../utils/next";
 import TextButton from "../../atom/button/textButton";
 import MainInput from "../../atom/input/MainInput";
 import List from "../../atom/list/List";
-import ListElement from "../../atom/list/ListElement";
-import FavouriteButton from "../components/FavouriteButton";
+import FavouriteButton from "../../atom/favouriteButton/FavouriteButton";
 import HintListItem from "../components/HintListItem";
 import Navigation from "../navigation/Navigation";
 import styles from "./topBar.module.css";
@@ -24,7 +23,7 @@ interface Props {
 export default function TopBar({ products }: Props) {
   const handleToggleMenu = () => {};
   const { search, setSearch } = useSearch();
-
+  // const { list } = useFavourite();
   const filtered = useMemo(() => {
     if (search.length < 3) return [];
     return products

@@ -11,7 +11,7 @@ interface SearchContex {
   setSearch: Dispatch<React.SetStateAction<string>>;
 }
 
-export const SearchContext = createContext<SearchContex>({
+const SearchContext = createContext<SearchContex>({
   search: "",
   setSearch: () => {},
 });

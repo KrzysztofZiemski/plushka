@@ -4,6 +4,7 @@ import Head from "next/head";
 import TopBar from "../components/layout/TopBar/TopBar";
 
 import client from "../config/apollo";
+import ContextProviders from "../context";
 import { SearchProvider } from "../context/search";
 
 import "../styles/globals.css";
@@ -12,7 +13,7 @@ export default function App({ Component, pageProps }: AppProps) {
   console.log("pageProps", pageProps);
   return (
     <ApolloProvider client={client}>
-      <SearchProvider>
+      <ContextProviders>
         <Head>
           <link
             rel="apple-touch-icon"
@@ -43,7 +44,7 @@ export default function App({ Component, pageProps }: AppProps) {
           </main>
           {/* <footer className="text-3xl text-green-600 p-2">footer</footer> */}
         </div>
-      </SearchProvider>
+      </ContextProviders>
     </ApolloProvider>
   );
 }
