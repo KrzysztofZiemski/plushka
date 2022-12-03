@@ -16,7 +16,9 @@ export default function ProductListItem({
 }: Props) {
   const router = useRouter();
 
-  const goToProductDeatail = () => router.push(getPath("product-detail")(name));
+  const goToProductDeatail = () => {
+    router.push(getPath("product-detail")(name));
+  };
 
   const mainPhoto = photos[0];
 

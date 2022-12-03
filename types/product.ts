@@ -20,7 +20,11 @@ export interface ProductPhoto {
   url: string;
 }
 
-type ProductCategory = "crocket" | "jewelery";
+export enum ProductCategory {
+  jewelery = "biżuteria",
+  plushToys = "maskotki",
+  scarves = "chusty",
+}
 
 export interface Product {
   id: string;
