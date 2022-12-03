@@ -1,16 +1,31 @@
 import { ApolloProvider } from "@apollo/client";
 import type { AppProps } from "next/app";
+import Router, { useRouter } from "next/router";
 import Head from "next/head";
 import TopBar from "../components/layout/TopBar/TopBar";
 
 import client from "../config/apollo";
 import ContextProviders from "../context";
-import { SearchProvider } from "../context/search";
 
 import "../styles/globals.css";
+import { useState } from "react";
+import { LoadingIcon } from "../assets/icons";
+import Loader from "../components/atom/loader/Loader";
 
-export default function App({ Component, pageProps }: AppProps) {
-  console.log("pageProps", pageProps);
+export default function App({ Component, pageProps, ...other }: AppProps) {
+  const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
+
+  router.events?.on("routeChangeStart", () => {
+    setIsLoading(true);
+  });
+  router.events?.on("routeChangeComplete", () => {
+    setIsLoading(false);
+  });
+  router.events?.on("routeChangeError", () => {
+    setIsLoading(false);
+  });
+
   return (
     <ApolloProvider client={client}>
       <ContextProviders>
@@ -40,7 +55,11 @@ export default function App({ Component, pageProps }: AppProps) {
         <div>
           <TopBar products={pageProps.products || []} />
           <main className="max-w-6xl mx-auto">
-            <Component {...pageProps} />
+            {isLoading ? (
+              <Loader className="mx-auto" />
+            ) : (
+              <Component {...pageProps} />
+            )}
           </main>
           {/* <footer className="text-3xl text-green-600 p-2">footer</footer> */}
         </div>

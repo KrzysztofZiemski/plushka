@@ -38,6 +38,7 @@ export default function MobileNavigation({ isOpen, onClose }: Props) {
             style={{ marginRight: "2%", marginLeft: "2%" }}
           >
             <Link
+              onClick={onClose}
               href={path}
               className="text-lg m font-semibold ease-out duration-100 hover:text-primary whitespace-nowrap shrink lg:text-lg"
             >
