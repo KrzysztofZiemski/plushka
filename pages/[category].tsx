@@ -54,11 +54,12 @@ export const getStaticPaths: GetStaticPaths = async () => {
   products.forEach((el) => {
     categories[el.category] = el.category;
   });
+  const paths = Object.entries(categories).map((entry) => ({
+    params: { category: entry[0] },
+  }));
 
   return {
-    paths: Object.entries(categories).map((entry) => ({
-      params: { id: entry[0] },
-    })),
+    paths,
     fallback: false, // can also be true or 'blocking'
   };
 };

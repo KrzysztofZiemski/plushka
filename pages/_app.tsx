@@ -40,7 +40,7 @@ export default function App({ Component, pageProps }: AppProps) {
           <main className="max-w-6xl mx-auto">
             <Component {...pageProps} />
           </main>
-          <footer className="text-3xl text-green-600 p-2">footer</footer>
+          {/* <footer className="text-3xl text-green-600 p-2">footer</footer> */}
         </div>
       </SearchProvider>
     </ApolloProvider>
