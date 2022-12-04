@@ -1,12 +1,7 @@
 import Link from "next/link";
-import React from "react";
-import { getPath } from "../../../utils/routing";
 import List from "../../atom/list/List";
 import ListElement from "../../atom/list/ListElement";
 import { listRoutes } from "./helpers";
-
-
-
 
 export default function Navigation() {
   return (

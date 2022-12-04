@@ -36,4 +36,6 @@ export interface Product {
   photos: ProductPhoto[];
   category: ProductCategory;
   textDescription: string;
+  slugCategory: string;
+  slugName: string;
 }

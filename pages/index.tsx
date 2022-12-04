@@ -1,14 +1,17 @@
 import { GetStaticProps } from "next";
 import Head from "next/head";
+import { ReactElement } from "react";
 import { getProducts } from "../api/products";
+import MainLayout from "../components/layout/MainLayout";
 import ProductListItem from "../components/molecules/ProductListItem";
+import { GetLayout } from "../types/page";
 import { Product } from "../types/product";
 
 interface Props {
   products: Product[];
 }
 
-export default function Home({ products }: Props) {
+export default function HomePage({ products }: Props) {
   return (
     <>
       <Head>
@@ -34,3 +37,9 @@ export const getStaticProps: GetStaticProps = async () => {
     props: { products },
   };
 };
+
+const getLayout: GetLayout = (page, pageProps: { products: Product[] }) => (
+  <MainLayout products={pageProps.products}>{page}</MainLayout>
+);
+
+HomePage.getLayout = getLayout;

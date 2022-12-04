@@ -10,21 +10,28 @@ interface Props extends HTMLAttributes<HTMLDivElement> {
   item: Product;
 }
 export default function ProductListItem({
-  item: { photos, name, shortDescription, price, productColors },
+  item: { photos, name, shortDescription, price, productColors, id, slugName },
   className,
   ...props
 }: Props) {
   const router = useRouter();
 
   const goToProductDeatail = () => {
-    router.push(getPath("product-detail")(name));
+    router.push(getPath("product-detail")(slugName));
   };
 
   const mainPhoto = photos[0];
 
   return (
-    <div className={`flex flex-col main-shadow ${className || ""}`} {...props}>
-      <div className="h-96 w-auto w-full relative overflow-hidden">
+    <div
+      className={`flex flex-col main-shadow ${className || ""}`}
+      id={id}
+      {...props}
+    >
+      <div
+        className="h-96 w-auto w-full relative overflow-hidden cursor-poinet"
+        onClick={goToProductDeatail}
+      >
         {mainPhoto && (
           <Image
             loader={datoCMSImageLoader}
@@ -32,7 +39,7 @@ export default function ProductListItem({
             src={mainPhoto.url}
             alt={mainPhoto.alt}
             fill
-            className="object-cover w-full"
+            className="object-cover w-full cursor-pointer"
           />
         )}
       </div>

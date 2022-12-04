@@ -1,16 +1,16 @@
-import { getPath } from "../../../utils/routing";
+import { categoriesSlugs, getPath } from "../../../utils/routing";
 
 export const listRoutes = [
   {
-    path: getPath("category")("biżuteria"),
+    path: getPath("category")(categoriesSlugs.biżuteria),
     label: "Biżuteria",
   },
   {
-    path: getPath("category")("maskotki"),
+    path: getPath("category")(categoriesSlugs.maskotki),
     label: "Maskotki pluszowe",
   },
   {
-    path: getPath("category")("chusty"),
+    path: getPath("category")(categoriesSlugs.chusty),
     label: "Chusty",
   },
 ];

@@ -51,7 +51,7 @@ const MainButton = ({
 
   return (
     <button
-      className={`${styles.mainButton} ${className}`}
+      className={`bg-primary text-white ${styles.mainButton} ${className}`}
       onClick={ripple ? createRipple : onClick}
       ref={ref}
       {...props}

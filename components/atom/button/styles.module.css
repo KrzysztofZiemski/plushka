@@ -4,7 +4,7 @@
   overflow: hidden;
   transition: background 400ms;
   border-radius: 25px;
-  padding: 17px 36px;
+  padding: 10px 21px;
   -webkit-tap-highlight-color: transparent;
 }
 .ripple {

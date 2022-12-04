@@ -3,9 +3,7 @@ import client from "../config/apollo";
 import { gql } from "@apollo/client";
 import { Product } from "../types/product";
 
-export const getProducts = async (category?: string): Promise<Product[]> => {
-  //(filter:{category:{eq:"crochet"}})
-
+export const getProducts = async (): Promise<Product[]> => {
   const result = await client.query({
     query: gql`
       query getProducts {
@@ -29,14 +27,44 @@ export const getProducts = async (category?: string): Promise<Product[]> => {
             alt
             url
           }
+          slugCategory
+          slugName
         }
       }
     `,
   });
 
-  const products = result.data.allProducts;
-  if (!category) return products;
-  return (result.data.allProducts as Product[]).filter(
-    (el) => el.category === category
-  );
+  return result.data.allProducts;
+};
+export const getProduct = async (slugName: string): Promise<Product> => {
+  const result = await client.query({
+    query: gql`
+      query getProduct {
+        product(filter: { slugName: { eq: "chusta-intense" } }) {
+          id
+          name
+          price
+          textDescription
+          shortDescription
+          productColors {
+            id
+            colorsBase
+          }
+          tags {
+            id
+            tag
+          }
+          category
+          photos {
+            id
+            alt
+            url
+          }
+          slugCategory
+          slugName
+        }
+      }
+    `,
+  });
+  return result.data.product;
 };

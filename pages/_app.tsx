@@ -1,31 +1,25 @@
 import { ApolloProvider } from "@apollo/client";
 import type { AppProps } from "next/app";
-import Router, { useRouter } from "next/router";
 import Head from "next/head";
-import TopBar from "../components/layout/TopBar/TopBar";
 
 import client from "../config/apollo";
 import ContextProviders from "../context";
 
+import { NextPage } from "next";
+import { useVH } from "../hooks/useVH";
 import "../styles/globals.css";
-import { useState } from "react";
-import { LoadingIcon } from "../assets/icons";
-import Loader from "../components/atom/loader/Loader";
+import { GetLayout } from "../types/page";
 
-export default function App({ Component, pageProps, ...other }: AppProps) {
-  const router = useRouter();
-  const [isLoading, setIsLoading] = useState(false);
+export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
+  getLayout?: GetLayout;
+};
+type AppPropsWithLayout = AppProps & {
+  Component: NextPageWithLayout;
+};
 
-  router.events?.on("routeChangeStart", () => {
-    setIsLoading(true);
-  });
-  router.events?.on("routeChangeComplete", () => {
-    setIsLoading(false);
-  });
-  router.events?.on("routeChangeError", () => {
-    setIsLoading(false);
-  });
-
+export default function App({ Component, pageProps }: AppPropsWithLayout) {
+  const getLayout = Component.getLayout ?? ((page) => page);
+  useVH();
   return (
     <ApolloProvider client={client}>
       <ContextProviders>
@@ -52,17 +46,7 @@ export default function App({ Component, pageProps, ...other }: AppProps) {
           <meta name="msapplication-TileColor" content="#da532c" />
           <meta name="theme-color" content="#ffffff" />
         </Head>
-        <div>
-          <TopBar products={pageProps.products || []} />
-          <main className="max-w-6xl mx-auto">
-            {isLoading ? (
-              <Loader className="mx-auto" />
-            ) : (
-              <Component {...pageProps} />
-            )}
-          </main>
-          {/* <footer className="text-3xl text-green-600 p-2">footer</footer> */}
-        </div>
+        {getLayout(<Component {...pageProps} />, pageProps)}
       </ContextProviders>
     </ApolloProvider>
   );

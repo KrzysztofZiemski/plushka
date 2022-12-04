@@ -23,7 +23,7 @@ import MobileNavigation from "../navigation/MobileNavigation";
 interface Props {
   products: Product[];
 }
-export default function TopBar({ products }: Props) {
+export default function MainTopBar({ products }: Props) {
   const router = useRouter();
   const { search, setSearch } = useSearch();
   const [isMobileNavigationOpen, setIsMobileNavigationOpen] = useState(false);

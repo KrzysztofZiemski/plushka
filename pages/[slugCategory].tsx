@@ -2,10 +2,11 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { useMemo } from "react";
-import slugify from "slugify";
 import { getProducts } from "../api/products";
+import MainLayout from "../components/layout/MainLayout";
 import ProductListItem from "../components/molecules/ProductListItem";
-import { Product, ProductCategory } from "../types/product";
+import { GetLayout } from "../types/page";
+import { Product } from "../types/product";
 import { categoriesSlugs } from "../utils/routing";
 
 interface Props {
@@ -16,27 +17,22 @@ export default function CategoryPage({ products }: Props) {
   const router = useRouter();
   const { slugCategory } = router.query;
 
-  const category = useMemo(
-    () => categoriesSlugs[slugCategory as ProductCategory],
-    [slugCategory]
-  );
-
   const categoryProducts = useMemo(() => {
-    if (!category) return products;
-    return products.filter((product) => product.category === category);
-  }, [category, products]);
+    if (!slugCategory) return [];
+
+    return products.filter((product) => product.slugCategory === slugCategory);
+  }, [slugCategory, products]);
 
   return (
     <>
       <Head>
-        <title>
-          Plushka - {categoriesSlugs[category as ProductCategory] || ""}
-        </title>
+        <title>Plushka - {categoryProducts[0]?.category || ""}</title>
         <meta
           name="description"
           content="Rękodzieło z pasją. Przytulanki, zabawki, biżuteria."
         />
       </Head>
+      <h1>{categoryProducts[0]?.category}</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5 lg:grid-cols-3">
         {categoryProducts.map((item) => (
           <ProductListItem key={item.id} item={item} />
@@ -47,15 +43,8 @@ export default function CategoryPage({ products }: Props) {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const products = await getProducts();
-
-  const categories: Record<string, string> = {};
-  products.forEach((el) => {
-    categories[el.category] = el.category;
-  });
-
-  const paths = Object.values(ProductCategory).map((value) => ({
-    params: { slugCategory: slugify(value) },
+  const paths = Object.values(categoriesSlugs).map((slugCategory) => ({
+    params: { slugCategory: slugCategory },
   }));
 
   return {
@@ -70,3 +59,9 @@ export const getStaticProps: GetStaticProps = async () => {
     props: { products: products || [] },
   };
 };
+
+const getLayout: GetLayout = (page, pageProps: { products: Product[] }) => (
+  <MainLayout products={pageProps.products}>{page}</MainLayout>
+);
+
+CategoryPage.getLayout = getLayout;
