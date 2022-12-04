@@ -8,6 +8,7 @@ import { getProduct, getProducts } from "../../api/products";
 import MainButton from "../../components/atom/button/MainButton";
 import List from "../../components/atom/list/List";
 import DetailsProductLayout from "../../components/layout/DetailsProductLayout";
+import Markdown from "../../components/molecules/markdown/Markdown";
 import { GetLayout } from "../../types/page";
 import { Product } from "../../types/product";
 import { datoCMSImageLoader } from "../../utils/next";
@@ -37,9 +38,9 @@ export default function ProductDetailPage({
         <title>{`${name}`}</title>
         <meta name="description" content={shortDescription} />
       </Head>
-      <div>
+      <div className="mb-2">
         <div className="p-2 border-2">
-          <div className="relative w-full h-96">
+          <div className="relative w-full h-96 md:half-screen-height">
             <Image
               loader={datoCMSImageLoader}
               src={selectedPhoto.url}
@@ -70,17 +71,12 @@ export default function ProductDetailPage({
         </List>
       </div>
       <div className="px-4">
-        <div className="flex items-center justify-between mb-4 mt-2">
-          <h1 className="capitalize font-bold text-2xl">{name}</h1>
+        <div className="flex items-center justify-between mb-4 ">
+          <h1 className="capitalize font-bold text-xl">{name}</h1>
           <p className="font-medium text-lg">{price} zł</p>
         </div>
-
-        <ReactMarkdown remarkPlugins={[remarkGfm]}>
-          {textDescription}
-        </ReactMarkdown>
-        <MainButton className="mt-4 mb-6">
-          Wyślij zapytanie o product
-        </MainButton>
+        <Markdown text={textDescription} className="mb-4" />
+        <MainButton className="mb-6">Wyślij zapytanie o product</MainButton>
       </div>
     </div>
   );

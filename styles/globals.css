@@ -24,6 +24,10 @@
     min-height: 100vh; /* Fallback for browsers that do not support Custom Properties */
     min-height: calc(var(--vh, 1vh) * 100);
   }
+  .half-screen-height{
+    height: 50vh; /* Fallback for browsers that do not support Custom Properties */
+    height: calc(var(--vh, 1vh) * 50);
+  } 
 }
 
 @supports (font: -apple-system-body) and (-webkit-appearance: none) {

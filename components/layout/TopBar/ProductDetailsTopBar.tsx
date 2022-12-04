@@ -22,19 +22,26 @@ export default function MainTopBar() {
   );
   return (
     <div className="main-shadow w-full flex items-center justify-between gap-3 px-2 py-2 md:items-stretch sticky bg-white z-10 top-0 md:px-6 md:py-6 md:shadow-none md:static">
-      <div className="flex justify-between w-full gap-3 md:hidden">
-        <Link href="/" className="flex items-center shrink-0 ">
+      <div className="w-full md:hidden flex justify-between items-start w-full">
+        <Link href="/" className="flex items-center shrink-0">
           <Image
             src={logo}
             alt={"logo Plushka"}
             loader={datoCMSImageLoader}
             className={styles.imageContainerSize}
+            // className="w-auto h-32"
           />
         </Link>
+        <div className="italic mt-2 ml-4 mr-2 mb-2">
+          <p>
+            Życie jest zbyt krótkie by otaczać się masówką. Postaw na{" "}
+            <strong className="font-medium">Handmade</strong>!
+          </p>
+        </div>
 
         <TextButton
           onClick={handleToggleMenu}
-          className="p-0"
+          className="p-0 top-2"
           role="button"
           aria-label="Open navigation page"
         >
@@ -45,7 +52,8 @@ export default function MainTopBar() {
           onClose={handleClose}
         />
       </div>
-      <div className="flex hidden grow md:flex">
+
+      {/* <div className="flex hidden grow md:flex">
         <div className="flex flex-col w-full">
           <div className="flex items-start justify-between">
             <div className="flex overflow-hidden w-10/12  lg:w-10/12 ">
@@ -72,7 +80,7 @@ export default function MainTopBar() {
             <FavouriteButton />
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

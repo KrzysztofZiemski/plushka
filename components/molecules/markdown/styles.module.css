@@ -1,0 +1,9 @@
+.root p{
+    font-size: 1rem;
+    line-height: 1.4rem;
+    margin: 0.5rem 0;
+}
+.root a{
+    color:#ffab00;
+    text-decoration: underline
+}

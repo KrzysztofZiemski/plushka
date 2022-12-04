@@ -19,16 +19,17 @@ export default function MobileNavigation({ isOpen, onClose }: Props) {
         isOpen ? "max-h-screen" : "max-h-0"
       }`}
     >
+      <CloseButton
+        className="absolute ml-auto bg-transparent top-3.5 right-0"
+        aria-label="close menu"
+        onClick={onClose}
+      />
+
       <Image
         src={logo}
         alt={"logo Plushka"}
         loader={datoCMSImageLoader}
         className="h-28 w-auto ml-6 mb-12 my-5"
-      />
-      <CloseButton
-        className="absolute ml-auto bg-transparent top-3.5 right-0"
-        aria-label="close menu"
-        onClick={onClose}
       />
 
       <List className="flex flex-col px-2 my-5 w-full justify-center">
