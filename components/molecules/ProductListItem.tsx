@@ -39,6 +39,7 @@ export default function ProductListItem({
             src={mainPhoto.url}
             alt={mainPhoto.alt}
             fill
+            loading="lazy"
             className="object-cover w-full cursor-pointer"
           />
         )}

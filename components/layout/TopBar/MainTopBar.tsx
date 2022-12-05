@@ -19,14 +19,22 @@ import styles from "./topBar.module.css";
 import { useRouter } from "next/router";
 import { getPath } from "../../../utils/routing";
 import MobileNavigation from "../navigation/MobileNavigation";
+import { Category } from "../../../types/category";
+import { getTreeCategories } from "../../../utils/category";
 
 interface Props {
   products: Product[];
+  categories: Category[];
 }
-export default function MainTopBar({ products }: Props) {
+export default function MainTopBar({ products, categories }: Props) {
   const router = useRouter();
   const { search, setSearch } = useSearch();
   const [isMobileNavigationOpen, setIsMobileNavigationOpen] = useState(false);
+
+  const treeCategories = useMemo(
+    () => getTreeCategories(categories),
+    [categories]
+  );
 
   const filtered = useMemo(() => {
     if (search.length < 3) return [];
@@ -92,6 +100,7 @@ export default function MainTopBar({ products }: Props) {
           <MenuBurgerIcon />
         </TextButton>
         <MobileNavigation
+          categories={treeCategories}
           isOpen={isMobileNavigationOpen}
           onClose={handleClose}
         />
@@ -123,7 +132,7 @@ export default function MainTopBar({ products }: Props) {
             <FavouriteButton />
           </div>
           <div className="w-full flex">
-            <Navigation />
+            <Navigation categories={treeCategories} />
           </div>
           <div
             className={`${styles.searchContainer} grow w-1/2 ml-auto max-w-sm`}

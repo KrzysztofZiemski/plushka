@@ -21,13 +21,11 @@ export const getProducts = async (): Promise<Product[]> => {
             id
             tag
           }
-          category
           photos {
             id
             alt
             url
           }
-          slugCategory
           slugName
         }
       }
