@@ -50,7 +50,7 @@ export default function ProductDetailPage({
             />
           </div>
         </div>
-        <List className="flex flex-wrap gap-2 p-2">
+        <List className="flex flex-wrap gap-2 p-2 justify-center">
           {photos?.map(({ id, alt, url }, index) => (
             <div
               className={`relative w-16 h-16 cursor-poiner border-2 ${
@@ -76,7 +76,7 @@ export default function ProductDetailPage({
           <p className="font-medium text-lg">{price} zł</p>
         </div>
         <Markdown text={textDescription} className="mb-4" />
-        <MainButton className="mb-6">Wyślij zapytanie o product</MainButton>
+        {/* <MainButton className="mb-6">Wyślij zapytanie o product</MainButton> */}
       </div>
     </div>
   );

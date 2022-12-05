@@ -11,8 +11,8 @@ function setDocHeight() {
 export const useVH = () => {
   useEffect(() => {
     if (!isClient()) return;
-    
     setDocHeight();
+
     window.addEventListener("resize", function () {
       setDocHeight();
     });

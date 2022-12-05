@@ -22,7 +22,7 @@ export default function DetailsProductLayout({ children }: Props) {
   return (
     <div className="min-h-screen">
       <ProductDetailsTopBar />
-      <main className="max-w-6xl mx-auto">
+      <main className="sm:ml-2 mr-2 max-w-6xl mx-auto">
         {isLoading ? <Loader className="mx-auto" /> : children}
       </main>
     </div>

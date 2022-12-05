@@ -25,6 +25,11 @@ export enum ProductCategory {
   plushToys = "maskotki",
   scarves = "chusty",
 }
+export enum ProductSubCategory {
+  jewelery = "naszyjniki",
+  plushToys = "bransoletki",
+  scarves = "chusty",
+}
 
 export interface Product {
   id: string;
