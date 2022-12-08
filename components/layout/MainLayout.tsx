@@ -27,7 +27,7 @@ export default function MainLayout({ products, children, categories }: Props) {
   return (
     <div className="min-h-screen mb-3">
       <MainTopBar products={products || []} categories={categories} />
-      <main className="max-w-6xl  sm:ml-2 mr-2 lg:mx-auto">
+      <main className="max-w-6xl md:mx-4 xl:mx-auto">
         {isLoading ? <Loader className="mx-auto" /> : children}
       </main>
     </div>

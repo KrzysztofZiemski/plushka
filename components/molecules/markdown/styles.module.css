@@ -4,6 +4,6 @@
     margin: 0.5rem 0;
 }
 .root a{
-    color:#ffab00;
+    color:var(--color-primary);
     text-decoration: underline
 }

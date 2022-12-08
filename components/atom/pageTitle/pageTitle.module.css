@@ -1,0 +1,11 @@
+.pageTitle{
+    background-image: url( '../../../assets/decoration-header.svg' );
+    background-repeat: no-repeat;
+    padding-left: 10%;
+}
+@media (min-width: 768px) {
+    .pageTitle{
+        background-image: none;
+        padding-left:0.5rem;
+    }
+  }

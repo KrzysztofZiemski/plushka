@@ -1,13 +1,9 @@
-import Link from "next/link";
-import React from "react";
+import Image from "next/image";
+import logo from "../../../assets/logo.png";
+import { CategoryWitchChildren } from "../../../types/category";
 import { datoCMSImageLoader } from "../../../utils/next";
 import CloseButton from "../../atom/button/closeButton";
 import List from "../../atom/list/List";
-import Image from "next/image";
-import ListElement from "../../atom/list/ListElement";
-import { listRoutes } from "./helpers";
-import logo from "../../../assets/logo.png";
-import { CategoryWitchChildren } from "../../../types/category";
 import NavigationElement from "./NavigationElement";
 
 interface Props {
@@ -27,7 +23,7 @@ export default function MobileNavigation({
       }`}
     >
       <CloseButton
-        className="absolute ml-auto bg-transparent top-3.5 right-0"
+        className="absolute ml-auto bg-transparent top-3.5 right-3"
         aria-label="close menu"
         onClick={onClose}
       />

@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import './variables.css';
 
 @layer base {
   h1 {
@@ -35,6 +36,8 @@
     clip-path: inset(0.6px);
   }
 }
+
+
 
 html,
 body {

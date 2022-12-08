@@ -27,6 +27,16 @@ export const getProducts = async (): Promise<Product[]> => {
             url
           }
           slugName
+          categories {
+            name
+            slugCategory
+            id
+            parent {
+              name
+              id
+              slugCategory
+            }
+          }
         }
       }
     `,

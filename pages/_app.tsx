@@ -1,10 +1,8 @@
 import { ApolloProvider } from "@apollo/client";
 import type { AppProps } from "next/app";
 import Head from "next/head";
-
 import client from "../config/apollo";
 import ContextProviders from "../context";
-
 import { NextPage } from "next";
 import { useVH } from "../hooks/useVH";
 import "../styles/globals.css";
