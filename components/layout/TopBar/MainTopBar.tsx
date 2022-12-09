@@ -58,6 +58,7 @@ export default function MainTopBar({ products, categories }: Props) {
     () => setIsMobileNavigationOpen(false),
     [setIsMobileNavigationOpen]
   );
+
   return (
     <div className="main-shadow w-full flex items-center justify-between gap-3 px-2 py-2 mb-3 md:items-stretch sticky bg-white z-10 top-0 md:px-6 md:py-6 md:shadow-none md:static">
       <Link href="/" className="flex items-center shrink-0 ">
