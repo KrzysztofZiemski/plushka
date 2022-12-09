@@ -1,9 +1,9 @@
 import { useRouter } from "next/router";
-import React, { Component, ReactNode, useState } from "react";
+import { ReactNode, useState } from "react";
 import { Category } from "../../types/category";
 import { Product } from "../../types/product";
 import Loader from "../atom/loader/Loader";
-import MainTopBar from "./TopBar/MainTopBar";
+import MainTopBar from "./TopBar/mainTopBar/MainTopBar";
 
 interface Props {
   products: Product[];
