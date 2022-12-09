@@ -1,18 +1,21 @@
-import Link from "next/link";
-import React from "react";
+import Image from "next/image";
+import logo from "../../../assets/logo.png";
+import { CategoryWitchChildren } from "../../../types/category";
 import { datoCMSImageLoader } from "../../../utils/next";
 import CloseButton from "../../atom/button/closeButton";
 import List from "../../atom/list/List";
-import Image from "next/image";
-import ListElement from "../../atom/list/ListElement";
-import { listRoutes } from "./helpers";
-import logo from "../../../assets/logo.png";
+import NavigationElement from "./NavigationElement";
 
 interface Props {
   isOpen: boolean;
   onClose: () => void;
+  categories: CategoryWitchChildren[];
 }
-export default function MobileNavigation({ isOpen, onClose }: Props) {
+export default function MobileNavigation({
+  isOpen,
+  onClose,
+  categories,
+}: Props) {
   return (
     <div
       className={`fixed top-0 left-0 w-full h-screen bg-white overflow-hidden ease-out duration-300 ${
@@ -20,7 +23,7 @@ export default function MobileNavigation({ isOpen, onClose }: Props) {
       }`}
     >
       <CloseButton
-        className="absolute ml-auto bg-transparent top-3.5 right-0"
+        className="absolute ml-auto bg-transparent top-3.5 right-3"
         aria-label="close menu"
         onClick={onClose}
       />
@@ -33,19 +36,12 @@ export default function MobileNavigation({ isOpen, onClose }: Props) {
       />
 
       <List className="flex flex-col px-2 my-5 w-full justify-center overflow-auto">
-        {listRoutes.map(({ label, path }) => (
-          <ListElement
-            key={path}
-            style={{ marginRight: "2%", marginLeft: "2%" }}
-          >
-            <Link
-              onClick={onClose}
-              href={path}
-              className="text-lg m font-semibold ease-out duration-100 hover:text-primary whitespace-nowrap shrink lg:text-lg"
-            >
-              {label}
-            </Link>
-          </ListElement>
+        {categories.map((category) => (
+          <NavigationElement
+            category={category}
+            onCloseNavigation={onClose}
+            key={category.id}
+          />
         ))}
       </List>
     </div>

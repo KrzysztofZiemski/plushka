@@ -21,14 +21,22 @@ export const getProducts = async (): Promise<Product[]> => {
             id
             tag
           }
-          category
           photos {
             id
             alt
             url
           }
-          slugCategory
           slugName
+          categories {
+            name
+            slugCategory
+            id
+            parent {
+              name
+              id
+              slugCategory
+            }
+          }
         }
       }
     `,
@@ -50,17 +58,27 @@ export const getProduct = async (slugName: string): Promise<Product> => {
             id
             colorsBase
           }
+          categories {
+            name
+            slugCategory
+            id
+            parent {
+              name
+              id
+              slugCategory
+            }
+          }
           tags {
             id
             tag
           }
-          category
+
           photos {
             id
             alt
             url
           }
-          slugCategory
+
           slugName
         }
       }

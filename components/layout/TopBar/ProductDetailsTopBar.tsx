@@ -1,18 +1,26 @@
 import Image from "next/image";
 import Link from "next/link";
-import { useCallback, useState } from "react";
-import crochetReverse from "../../../assets/crochet-reverse.png";
-import crochetImage from "../../../assets/crochet.png";
+import { useCallback, useMemo, useState } from "react";
 import { MenuBurgerIcon } from "../../../assets/icons";
 import logo from "../../../assets/logo.png";
+import { Category } from "../../../types/category";
+import { getTreeCategories } from "../../../utils/category";
 import { datoCMSImageLoader } from "../../../utils/next";
 import TextButton from "../../atom/button/textButton";
-import FavouriteButton from "../../atom/favouriteButton/FavouriteButton";
 import MobileNavigation from "../navigation/MobileNavigation";
 import styles from "./topBar.module.css";
 
-export default function MainTopBar() {
+interface Props {
+  categories: Category[];
+}
+
+export default function MainTopBar({ categories }: Props) {
   const [isMobileNavigationOpen, setIsMobileNavigationOpen] = useState(false);
+
+  const treeCategories = useMemo(
+    () => getTreeCategories(categories),
+    [categories]
+  );
 
   const handleToggleMenu = () => setIsMobileNavigationOpen((prev) => !prev);
 
@@ -50,6 +58,7 @@ export default function MainTopBar() {
         <MobileNavigation
           isOpen={isMobileNavigationOpen}
           onClose={handleClose}
+          categories={treeCategories}
         />
       </div>
 

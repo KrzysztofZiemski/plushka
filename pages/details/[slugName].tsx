@@ -2,19 +2,20 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import { useState } from "react";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
+import { getCategories } from "../../api/categories";
 import { getProduct, getProducts } from "../../api/products";
-import MainButton from "../../components/atom/button/MainButton";
+import ColorBars from "../../components/atom/colorsBars/ColorBars";
 import List from "../../components/atom/list/List";
 import DetailsProductLayout from "../../components/layout/DetailsProductLayout";
 import Markdown from "../../components/molecules/markdown/Markdown";
+import { Category } from "../../types/category";
 import { GetLayout } from "../../types/page";
 import { Product } from "../../types/product";
 import { datoCMSImageLoader } from "../../utils/next";
 
 interface Props {
   product: Product;
+  categories: Category[];
 }
 
 export default function ProductDetailPage({
@@ -22,18 +23,16 @@ export default function ProductDetailPage({
     name,
     shortDescription,
     textDescription,
-    productColors,
     price,
-    id,
-    category,
     photos,
+    productColors,
   },
 }: Props) {
   const [selected, setSelected] = useState(0);
 
   const selectedPhoto = photos[selected];
   return (
-    <div>
+    <>
       <Head>
         <title>{`${name}`}</title>
         <meta name="description" content={shortDescription} />
@@ -70,15 +69,15 @@ export default function ProductDetailPage({
           ))}
         </List>
       </div>
-      <div className="px-4">
+      <div className="px-4 grow">
         <div className="flex items-center justify-between mb-4 ">
           <h1 className="capitalize font-bold text-xl">{name}</h1>
           <p className="font-medium text-lg">{price} zł</p>
         </div>
         <Markdown text={textDescription} className="mb-4" />
-        {/* <MainButton className="mb-6">Wyślij zapytanie o product</MainButton> */}
       </div>
-    </div>
+      <ColorBars colors={productColors} className="mt-auto py-4  mt-auto" />
+    </>
   );
 }
 
@@ -103,13 +102,16 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     };
 
   const product = await getProduct(params.slugName as string);
+  const categories = await getCategories();
   return {
-    props: { product },
+    props: { product, categories },
   };
 };
 
 const getLayout: GetLayout = (page, pageProps: Props) => (
-  <DetailsProductLayout>{page}</DetailsProductLayout>
+  <DetailsProductLayout categories={pageProps.categories}>
+    {page}
+  </DetailsProductLayout>
 );
 
 ProductDetailPage.getLayout = getLayout;

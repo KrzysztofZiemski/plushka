@@ -1,32 +1,40 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ChangeEvent, useCallback, useMemo, useState } from "react";
-import crochetReverse from "../../../assets/crochet-reverse.png";
-import crochetImage from "../../../assets/crochet.png";
-import { MenuBurgerIcon, SearchIcon } from "../../../assets/icons";
-import logo from "../../../assets/logo.png";
-import { useSearch } from "../../../context/search";
-import { Product } from "../../../types/product";
-import { productFilter } from "../../../utils/filter";
-import { datoCMSImageLoader } from "../../../utils/next";
-import TextButton from "../../atom/button/textButton";
-import MainInput from "../../atom/input/MainInput";
-import List from "../../atom/list/List";
-import FavouriteButton from "../../atom/favouriteButton/FavouriteButton";
-import HintListItem from "../../molecules/HintListItem";
-import Navigation from "../navigation/Navigation";
-import styles from "./topBar.module.css";
 import { useRouter } from "next/router";
-import { getPath } from "../../../utils/routing";
-import MobileNavigation from "../navigation/MobileNavigation";
+import { ChangeEvent, useCallback, useMemo, useState } from "react";
+import crochetReverse from "../../../../assets/crochet-reverse.png";
+import crochetImage from "../../../../assets/crochet.png";
+import { MenuBurgerIcon, SearchIcon } from "../../../../assets/icons";
+import logo from "../../../../assets/logo.png";
+import { useSearch } from "../../../../context/search";
+import { Category } from "../../../../types/category";
+import { Product } from "../../../../types/product";
+import { getTreeCategories } from "../../../../utils/category";
+import { productFilter } from "../../../../utils/filter";
+import { datoCMSImageLoader } from "../../../../utils/next";
+import { getPath } from "../../../../utils/routing";
+import TextButton from "../../../atom/button/textButton";
+import FavouriteButton from "../../../atom/favouriteButton/FavouriteButton";
+import MainInput from "../../../atom/input/MainInput";
+import List from "../../../atom/list/List";
+import HintListItem from "../../../molecules/HintListItem";
+import MobileNavigation from "../../navigation/MobileNavigation";
+import Navigation from "../../navigation/Navigation";
+import styles from "../topBar.module.css";
 
 interface Props {
   products: Product[];
+  categories: Category[];
 }
-export default function MainTopBar({ products }: Props) {
+export default function MainTopBar({ products, categories }: Props) {
   const router = useRouter();
   const { search, setSearch } = useSearch();
   const [isMobileNavigationOpen, setIsMobileNavigationOpen] = useState(false);
+
+  const treeCategories = useMemo(
+    () => getTreeCategories(categories),
+    [categories]
+  );
 
   const filtered = useMemo(() => {
     if (search.length < 3) return [];
@@ -50,6 +58,7 @@ export default function MainTopBar({ products }: Props) {
     () => setIsMobileNavigationOpen(false),
     [setIsMobileNavigationOpen]
   );
+
   return (
     <div className="main-shadow w-full flex items-center justify-between gap-3 px-2 py-2 mb-3 md:items-stretch sticky bg-white z-10 top-0 md:px-6 md:py-6 md:shadow-none md:static">
       <Link href="/" className="flex items-center shrink-0 ">
@@ -92,6 +101,7 @@ export default function MainTopBar({ products }: Props) {
           <MenuBurgerIcon />
         </TextButton>
         <MobileNavigation
+          categories={treeCategories}
           isOpen={isMobileNavigationOpen}
           onClose={handleClose}
         />
@@ -123,7 +133,7 @@ export default function MainTopBar({ products }: Props) {
             <FavouriteButton />
           </div>
           <div className="w-full flex">
-            <Navigation />
+            <Navigation categories={treeCategories} />
           </div>
           <div
             className={`${styles.searchContainer} grow w-1/2 ml-auto max-w-sm`}
