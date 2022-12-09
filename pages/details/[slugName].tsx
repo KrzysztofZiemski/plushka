@@ -4,30 +4,24 @@ import Image from "next/image";
 import { useState } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import { getCategories } from "../../api/categories";
 import { getProduct, getProducts } from "../../api/products";
 import MainButton from "../../components/atom/button/MainButton";
 import List from "../../components/atom/list/List";
 import DetailsProductLayout from "../../components/layout/DetailsProductLayout";
 import Markdown from "../../components/molecules/markdown/Markdown";
+import { Category } from "../../types/category";
 import { GetLayout } from "../../types/page";
 import { Product } from "../../types/product";
 import { datoCMSImageLoader } from "../../utils/next";
 
 interface Props {
   product: Product;
+  categories: Category[];
 }
 
 export default function ProductDetailPage({
-  product: {
-    name,
-    shortDescription,
-    textDescription,
-    productColors,
-    price,
-    id,
-    category,
-    photos,
-  },
+  product: { name, shortDescription, textDescription, price, photos },
 }: Props) {
   const [selected, setSelected] = useState(0);
 
@@ -103,13 +97,16 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     };
 
   const product = await getProduct(params.slugName as string);
+  const categories = await getCategories();
   return {
-    props: { product },
+    props: { product, categories },
   };
 };
 
 const getLayout: GetLayout = (page, pageProps: Props) => (
-  <DetailsProductLayout>{page}</DetailsProductLayout>
+  <DetailsProductLayout categories={pageProps.categories}>
+    {page}
+  </DetailsProductLayout>
 );
 
 ProductDetailPage.getLayout = getLayout;

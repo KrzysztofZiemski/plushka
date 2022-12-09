@@ -1,12 +1,14 @@
 import { useRouter } from "next/router";
 import { ReactNode, useState } from "react";
+import { Category } from "../../types/category";
 import Loader from "../atom/loader/Loader";
 import ProductDetailsTopBar from "./TopBar/ProductDetailsTopBar";
 
 interface Props {
   children: ReactNode;
+  categories: Category[];
 }
-export default function DetailsProductLayout({ children }: Props) {
+export default function DetailsProductLayout({ children, categories }: Props) {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -21,8 +23,8 @@ export default function DetailsProductLayout({ children }: Props) {
   });
   return (
     <div className="min-h-screen">
-      <ProductDetailsTopBar />
-      <main className="sm:ml-2 mr-2 max-w-6xl mx-auto">
+      <ProductDetailsTopBar categories={categories} />
+      <main className="max-w-6xl md:mx-4 xl:mx-auto">
         {isLoading ? <Loader className="mx-auto" /> : children}
       </main>
     </div>

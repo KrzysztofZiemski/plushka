@@ -30,9 +30,13 @@ export default function NavigationElement({
         >
           {category.name}
         </Link>
-        <TextButton onClick={() => setIsOpen((prev) => !prev)}>
-          <ExpandedIcon />
-        </TextButton>
+        {isNested && (
+          <TextButton onClick={() => setIsOpen((prev) => !prev)}>
+            <ExpandedIcon
+              className={`transition-all ${isOpen ? "rotate-180" : ""}`}
+            />
+          </TextButton>
+        )}
       </div>
 
       {isNested && (
