@@ -1,3 +1,5 @@
+import { Category } from "./category";
+
 export enum Color {
   black = "czarny",
   blue = "niebieski",
@@ -20,17 +22,6 @@ export interface ProductPhoto {
   url: string;
 }
 
-export enum ProductCategory {
-  jewelery = "biżuteria",
-  plushToys = "maskotki",
-  scarves = "chusty",
-}
-export enum ProductSubCategory {
-  jewelery = "naszyjniki",
-  plushToys = "bransoletki",
-  scarves = "chusty",
-}
-
 export interface Product {
   id: string;
   name: string;
@@ -39,8 +30,7 @@ export interface Product {
   productColors: ProductColor[];
   tags: string;
   photos: ProductPhoto[];
-  category: ProductCategory;
+  categories: Category[];
   textDescription: string;
-  slugCategory: string;
   slugName: string;
 }
