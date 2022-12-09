@@ -22,9 +22,9 @@ export default function DetailsProductLayout({ children, categories }: Props) {
     setIsLoading(false);
   });
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen pb-3 flex flex-col">
       <ProductDetailsTopBar categories={categories} />
-      <main className="max-w-6xl md:mx-4 xl:mx-auto">
+      <main className="flex flex-col max-w-6xl grow md:mx-4 xl:mx-auto">
         {isLoading ? <Loader className="mx-auto" /> : children}
       </main>
     </div>

@@ -25,9 +25,9 @@ export default function MainLayout({ products, children, categories }: Props) {
     setIsLoading(false);
   });
   return (
-    <div className="min-h-screen mb-3">
+    <div className="min-h-screen flex flex-col pb-3 ">
       <MainTopBar products={products || []} categories={categories} />
-      <main className="max-w-6xl md:mx-4 xl:mx-auto">
+      <main className="max-w-6xl grow md:mx-4 xl:mx-auto">
         {isLoading ? <Loader className="mx-auto" /> : children}
       </main>
     </div>

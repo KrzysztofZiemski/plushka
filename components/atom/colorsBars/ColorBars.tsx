@@ -19,7 +19,10 @@ interface Props extends HTMLAttributes<HTMLDivElement> {
 
 export default function ColorBars({ colors, className, ...props }: Props) {
   return (
-    <div className={`flex items-center h-10 gap-3 ${className}`} {...props}>
+    <div
+      className={`flex items-center h-10 gap-3 border-t border-grey flex justify-end ${className}`}
+      {...props}
+    >
       {colors.map((el) => {
         const color = dictionaryColors[el.colorsBase];
 
