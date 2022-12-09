@@ -1,5 +1,3 @@
-import { ProductCategory } from "../types/product";
-
 type Path = "product-detail" | "category";
 
 const paths = {
@@ -9,10 +7,4 @@ const paths = {
 
 export const getPath = (path: Path) => {
   return paths[path];
-};
-
-export const categoriesSlugs = {
-  [ProductCategory.jewelery]: "bizuteria",
-  [ProductCategory.plushToys]: "maskotki",
-  [ProductCategory.scarves]: "chusty",
 };

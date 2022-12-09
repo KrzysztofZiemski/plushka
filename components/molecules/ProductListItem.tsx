@@ -1,10 +1,10 @@
-import React, { HTMLAttributes } from "react";
-import { Product } from "../../types/product";
-import { datoCMSImageLoader, isClient } from "../../utils/next";
 import Image from "next/image";
-import ColorBars from "../atom/colorsBars/ColorBars";
 import { useRouter } from "next/router";
+import { HTMLAttributes } from "react";
+import { Product } from "../../types/product";
+import { datoCMSImageLoader } from "../../utils/next";
 import { getPath } from "../../utils/routing";
+import ColorBars from "../atom/colorsBars/ColorBars";
 
 interface Props extends HTMLAttributes<HTMLDivElement> {
   item: Product;
@@ -39,6 +39,7 @@ export default function ProductListItem({
             src={mainPhoto.url}
             alt={mainPhoto.alt}
             fill
+            loading="lazy"
             className="object-cover w-full cursor-pointer"
           />
         )}
@@ -52,10 +53,7 @@ export default function ProductListItem({
         </h2>
         <p>{shortDescription}</p>
         <div className="font-medium text-lg text-right mb-9">{`${price} zł`}</div>
-        <ColorBars
-          colors={productColors}
-          className="mt-auto py-4 border-t border-grey flex justify-end mt-auto"
-        />
+        <ColorBars colors={productColors} className="mt-auto py-4 mt-auto" />
       </div>
     </div>
   );
