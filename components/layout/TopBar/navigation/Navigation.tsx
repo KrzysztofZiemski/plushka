@@ -1,9 +1,9 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { CategoryWitchChildren } from "../../../types/category";
-import { getPath } from "../../../utils/routing";
-import List from "../../atom/list/List";
-import ListElement from "../../atom/list/ListElement";
+import { CategoryWitchChildren } from "../../../../types/category";
+import { getPath } from "../../../../utils/routing";
+import List from "../../../atom/list/List";
+import ListElement from "../../../atom/list/ListElement";
 import { findInfiniteChildrenIsActive } from "./helpers";
 
 interface Props {

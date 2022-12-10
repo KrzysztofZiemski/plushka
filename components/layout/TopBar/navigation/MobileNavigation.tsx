@@ -1,10 +1,10 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
-import logo from "../../../assets/logo.png";
-import { CategoryWitchChildren } from "../../../types/category";
-import { datoCMSImageLoader } from "../../../utils/next";
-import CloseButton from "../../atom/button/closeButton";
-import List from "../../atom/list/List";
+import logo from "../../../../assets/logo.png";
+import { CategoryWitchChildren } from "../../../../types/category";
+import { datoCMSImageLoader } from "../../../../utils/next";
+import CloseButton from "../../../atom/button/closeButton";
+import List from "../../../atom/list/List";
 import MobileNavigationElement from "./MobileNavigationElement";
 
 interface Props {

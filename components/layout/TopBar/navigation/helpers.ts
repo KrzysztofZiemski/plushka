@@ -1,5 +1,5 @@
-import { CategoryWitchChildren } from "../../../types/category";
-import { getPath } from "../../../utils/routing";
+import { CategoryWitchChildren } from "../../../../types/category";
+import { getPath } from "../../../../utils/routing";
 
 export const findInfiniteChildrenIsActive = (
   { slugCategory, childrens }: CategoryWitchChildren,

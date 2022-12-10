@@ -3,7 +3,7 @@ import { ReactNode, useState } from "react";
 import { Category } from "../../types/category";
 import { Product } from "../../types/product";
 import Loader from "../atom/loader/Loader";
-import MainTopBar from "./TopBar/mainTopBar/MainTopBar";
+import TopBar from "./TopBar/TopBar";
 
 interface Props {
   products: Product[];
@@ -26,7 +26,7 @@ export default function MainLayout({ products, children, categories }: Props) {
   });
   return (
     <div className="min-h-screen flex flex-col pb-3 ">
-      <MainTopBar products={products || []} categories={categories} />
+      <TopBar products={products || []} categories={categories} />
       <main className="max-w-6xl grow md:mx-4 xl:mx-auto">
         {isLoading ? <Loader className="mx-auto" /> : children}
       </main>

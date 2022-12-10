@@ -1,12 +1,12 @@
 import Link from "next/link";
 import React, { HTMLAttributes, useState } from "react";
-import { ExpandedIcon } from "../../../assets/icons";
-import { CategoryWitchChildren } from "../../../types/category";
-import { getPath } from "../../../utils/routing";
-import Accordion from "../../atom/accordion/Accordion";
-import TextButton from "../../atom/button/textButton";
-import List from "../../atom/list/List";
-import ListElement from "../../atom/list/ListElement";
+import { ExpandedIcon } from "../../../../assets/icons";
+import { CategoryWitchChildren } from "../../../../types/category";
+import { getPath } from "../../../../utils/routing";
+import Accordion from "../../../atom/accordion/Accordion";
+import TextButton from "../../../atom/button/textButton";
+import List from "../../../atom/list/List";
+import ListElement from "../../../atom/list/ListElement";
 import { findInfiniteChildrenIsActive } from "./helpers";
 
 interface Props extends HTMLAttributes<HTMLLIElement> {
