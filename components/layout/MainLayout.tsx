@@ -27,9 +27,10 @@ export default function MainLayout({ products, children, categories }: Props) {
   return (
     <div className="min-h-screen flex flex-col pb-3 ">
       <TopBar products={products || []} categories={categories} />
-      <main className="max-w-6xl grow md:mx-4 xl:mx-auto">
+      <main className="w-full max-w-6xl grow md:mx-4 xl:mx-auto">
         {isLoading ? <Loader className="mx-auto" /> : children}
       </main>
     </div>
   );
 }
+//max-w-6xl	max-width: 72rem; /* 1152px */re

@@ -55,7 +55,7 @@ export default function MobileTopBar({
                   <HintListItem
                     product={product}
                     key={product.id}
-                    onClick={() => goToProduct(product.name)}
+                    onClick={() => goToProduct(product.slugName)}
                   />
                 );
               })}

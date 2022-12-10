@@ -48,7 +48,13 @@ export default function CategoryPage({ products, categories }: Props) {
       </Head>
       <PageTitle>{pageCategory?.name}</PageTitle>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 lg:grid-cols-3">
+      <div
+        className={`grid grid-cols-1 md:grid-cols-2 gap-5 lg:grid-cols-3 ${
+          categoryProducts.length < 3
+            ? `grid-cols-${categoryProducts.length}!important`
+            : ""
+        }`}
+      >
         {categoryProducts.map((item) => (
           <ProductListItem key={item.id} item={item} />
         ))}
