@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import logo from "../../../../assets/logo.png";
 import { CategoryWitchChildren } from "../../../../types/category";
 import { datoCMSImageLoader } from "../../../../utils/next";
+import { getPath } from "../../../../utils/routing";
 import CloseButton from "../../../atom/button/closeButton";
 import FavouriteButton from "../../../atom/favouriteButton/FavouriteButton";
 import List from "../../../atom/list/List";
@@ -19,6 +20,11 @@ export default function MobileNavigation({
   categories,
 }: Props) {
   const router = useRouter();
+
+  const goToFavourites = () => {
+    router.push(getPath("favourites")(""));
+  };
+
   return (
     <div
       className={`fixed top-0 left-0 w-full h-screen bg-white overflow-hidden ease-out duration-300 z-10 ${
@@ -39,7 +45,7 @@ export default function MobileNavigation({
         />
       </div>
       <div className="text-right px-2">
-        <FavouriteButton />
+        <FavouriteButton onClick={goToFavourites} />
       </div>
 
       <List className="flex flex-col px-2  w-full justify-center overflow-auto">

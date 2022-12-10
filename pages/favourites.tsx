@@ -17,70 +17,41 @@ interface Props {
   categories: Category[];
 }
 
-export default function CategoryPage({ products, categories }: Props) {
-  const router = useRouter();
-  const { slugCategory } = router.query;
+export default function FavouritesPage({ products, categories }: Props) {
   const { favourites, toggle } = useFavourites();
 
-  const pageCategory = useMemo(() => {
-    return categories.find(
-      (category) => category.slugCategory === slugCategory
-    );
-  }, [categories, slugCategory]);
-
-  const categoryProducts = useMemo(() => {
-    if (!slugCategory) return [];
-
-    return products.filter(
-      (product) =>
-        !!product.categories.find(
-          (category) => category.slugCategory === slugCategory
-        )
-    );
-  }, [products, slugCategory]);
+  const favouriteProducts = useMemo(() => {
+    return favourites
+      .map((favouriteItem) =>
+        products.find((product) => product.id === favouriteItem.idProduct)
+      )
+      .filter((item) => item !== undefined) as Product[];
+  }, [favourites, products]);
 
   return (
     <>
       <Head>
-        <title>{`Plushka - ${pageCategory?.name || ""}`}</title>
+        <title>Plushka - ulubione</title>
         <meta
           name="description"
           content="Rękodzieło z pasją. Przytulanki, zabawki, biżuteria."
         />
       </Head>
-      <PageTitle>{pageCategory?.name}</PageTitle>
+      <PageTitle>Ulubione</PageTitle>
 
-      <div
-        className={`grid grid-cols-1 md:grid-cols-2 gap-5 lg:grid-cols-3 ${
-          categoryProducts.length < 3
-            ? `grid-cols-${categoryProducts.length}!important`
-            : ""
-        }`}
-      >
-        {categoryProducts.map((item) => (
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 lg:grid-cols-3">
+        {favouriteProducts.map((item) => (
           <ProductListItem
             key={item.id}
             item={item}
             toggleFavourite={toggle}
-            isFavourite={!!favourites.find((fav) => fav.idProduct === item.id)}
+            isFavourite={true}
           />
         ))}
       </div>
     </>
   );
 }
-
-export const getStaticPaths: GetStaticPaths = async () => {
-  const categories = await getCategories();
-  const paths = categories.map(({ slugCategory }) => ({
-    params: { slugCategory },
-  }));
-
-  return {
-    paths,
-    fallback: false, // can also be true or 'blocking'
-  };
-};
 
 export const getStaticProps: GetStaticProps = async () => {
   const products = await getProducts();
@@ -96,4 +67,4 @@ const getLayout: GetLayout = (page, pageProps: Props) => (
   </MainLayout>
 );
 
-CategoryPage.getLayout = getLayout;
+FavouritesPage.getLayout = getLayout;

@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { getCategories } from "../../api/categories";
 import { getProduct, getProducts } from "../../api/products";
-import ColorBars from "../../components/atom/colorsBars/ColorBars";
+import BottomProduct from "../../components/atom/bottomProduct/BottomProduct";
 import List from "../../components/atom/list/List";
 import DetailsProductLayout from "../../components/layout/DetailsProductLayout";
 import Markdown from "../../components/molecules/markdown/Markdown";
@@ -77,7 +77,7 @@ export default function ProductDetailPage({
         </div>
         <Markdown text={textDescription} className="mb-4" />
       </div>
-      <ColorBars colors={productColors} className="mt-auto py-4  mt-auto" />
+      <BottomProduct colors={productColors} className="mt-auto py-4  mt-auto" />
     </>
   );
 }

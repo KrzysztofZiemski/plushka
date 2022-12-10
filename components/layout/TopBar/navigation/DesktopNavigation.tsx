@@ -12,9 +12,14 @@ import FavouriteButton from "../../../atom/favouriteButton/FavouriteButton";
 interface Props {
   categories: CategoryWitchChildren[];
   path: string;
+  goToFavourites: () => void;
 }
 
-export default function DesktopNavigation({ categories, path }: Props) {
+export default function DesktopNavigation({
+  categories,
+  path,
+  goToFavourites,
+}: Props) {
   const activeIndexCategory = useMemo(() => {
     return categories.findIndex((item) => {
       return findInfiniteChildrenIsActive(item, path);
@@ -65,7 +70,7 @@ export default function DesktopNavigation({ categories, path }: Props) {
               );
             })}
             <ListElement className="ml-auto">
-              <FavouriteButton />
+              <FavouriteButton onClick={goToFavourites} />
             </ListElement>
           </List>
         </div>
@@ -80,18 +85,16 @@ export default function DesktopNavigation({ categories, path }: Props) {
               );
 
               return (
-                <>
-                  <ListElement key={item.id} className="relative px-10 py-1">
-                    <Link
-                      href={getPath("category")(item.slugCategory)}
-                      className={` ${
-                        isActive ? "text-primary" : ""
-                      } text-base m font-semibold ease-out hover:text-primary whitespace-nowrap shrink-0`}
-                    >
-                      {item.name}
-                    </Link>
-                  </ListElement>
-                </>
+                <ListElement key={item.id} className="relative px-10 py-1">
+                  <Link
+                    href={getPath("category")(item.slugCategory)}
+                    className={` ${
+                      isActive ? "text-primary" : ""
+                    } text-base m font-semibold ease-out hover:text-primary whitespace-nowrap shrink-0`}
+                  >
+                    {item.name}
+                  </Link>
+                </ListElement>
               );
             })}
           </List>

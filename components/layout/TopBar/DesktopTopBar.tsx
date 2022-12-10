@@ -10,6 +10,8 @@ import List from "../../atom/list/List";
 import HintListItem from "../../molecules/HintListItem";
 import styles from "./topBar.module.css";
 import DesktopNavigation from "./navigation/DesktopNavigation";
+import { getPath } from "../../../utils/routing";
+import { useCallback } from "react";
 
 interface Props {
   products: Product[];
@@ -25,12 +27,20 @@ export default function DesktopTopBar({
   const router = useRouter();
   const { search, setSearch, filtered } = useSearchProducts(products);
 
+  const goToFavourites = useCallback(() => {
+    router.push(getPath("favourites")(""));
+  }, [router]);
+
   return (
     <div className="hidden w-full bg-white z-10 px-6 py-6  md:block">
       <div className="flex gap-3 w-full">
         <Image src={logo} alt="logo Plushka" className="h-40 w-auto" />
         <div className="w-full">
-          <DesktopNavigation categories={categories} path={router.asPath} />
+          <DesktopNavigation
+            categories={categories}
+            path={router.asPath}
+            goToFavourites={goToFavourites}
+          />
         </div>
       </div>
       <div className={`${styles.searchContainer} grow w-1/2 ml-auto max-w-sm`}>
