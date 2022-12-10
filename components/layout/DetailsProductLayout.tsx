@@ -1,14 +1,20 @@
 import { useRouter } from "next/router";
 import { ReactNode, useState } from "react";
 import { Category } from "../../types/category";
+import { Product } from "../../types/product";
 import Loader from "../atom/loader/Loader";
-import ProductDetailsTopBar from "./TopBar/ProductDetailsTopBar";
+import MainTopBar from "./TopBar/mainTopBar/MainTopBar";
 
 interface Props {
   children: ReactNode;
   categories: Category[];
+  products: Product[];
 }
-export default function DetailsProductLayout({ children, categories }: Props) {
+export default function DetailsProductLayout({
+  children,
+  categories,
+  products,
+}: Props) {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -23,7 +29,7 @@ export default function DetailsProductLayout({ children, categories }: Props) {
   });
   return (
     <div className="min-h-screen pb-3 flex flex-col">
-      <ProductDetailsTopBar categories={categories} />
+      <MainTopBar categories={categories} products={products} />
       <main className="flex flex-col max-w-6xl grow md:mx-4 xl:mx-auto">
         {isLoading ? <Loader className="mx-auto" /> : children}
       </main>

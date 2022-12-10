@@ -12,7 +12,7 @@ interface Props extends HTMLAttributes<HTMLLIElement> {
   category: CategoryWitchChildren;
   onCloseNavigation: () => void;
 }
-export default function NavigationElement({
+export default function MobileNavigationElement({
   category,
   style,
   onCloseNavigation,
@@ -47,7 +47,7 @@ export default function NavigationElement({
             }`}
           >
             {category.childrens.map((nestedCategory) => (
-              <NavigationElement
+              <MobileNavigationElement
                 key={nestedCategory.id}
                 category={nestedCategory as CategoryWitchChildren}
                 onCloseNavigation={onCloseNavigation}

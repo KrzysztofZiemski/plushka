@@ -4,7 +4,7 @@ import { CategoryWitchChildren } from "../../../types/category";
 import { datoCMSImageLoader } from "../../../utils/next";
 import CloseButton from "../../atom/button/closeButton";
 import List from "../../atom/list/List";
-import NavigationElement from "./NavigationElement";
+import MobileNavigationElement from "./MobileNavigationElement";
 
 interface Props {
   isOpen: boolean;
@@ -37,7 +37,7 @@ export default function MobileNavigation({
 
       <List className="flex flex-col px-2 my-5 w-full justify-center overflow-auto">
         {categories.map((category) => (
-          <NavigationElement
+          <MobileNavigationElement
             category={category}
             onCloseNavigation={onClose}
             key={category.id}

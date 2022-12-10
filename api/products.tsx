@@ -48,7 +48,7 @@ export const getProduct = async (slugName: string): Promise<Product> => {
   const result = await client.query({
     query: gql`
       query getProduct {
-        product(filter: { slugName: { eq: "chusta-intense" } }) {
+        product(filter: { slugName: { eq: "${slugName}" } }) {
           id
           name
           price

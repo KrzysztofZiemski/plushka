@@ -38,6 +38,7 @@ export default function MainTopBar({ products, categories }: Props) {
 
   const filtered = useMemo(() => {
     if (search.length < 3) return [];
+
     return products
       .map((el) => ({ ...el, points: productFilter(el, search) }))
       .filter(({ points }) => points)

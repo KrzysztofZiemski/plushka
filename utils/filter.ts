@@ -8,7 +8,7 @@ export const productFilter = (item: Product, phrase: string) => {
 
   searchWords.forEach((word) => {
     if (name.toLocaleLowerCase().includes(word)) points = +4;
-    if (categories.map((cat) => cat.name.toLocaleLowerCase()).includes(word))
+    if (categories.find((cat) => cat.name.toLocaleLowerCase().includes(word)))
       points = +2;
     if (shortDescription.toLocaleLowerCase().includes(word)) points = +1;
   });

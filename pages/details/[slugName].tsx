@@ -16,6 +16,7 @@ import { datoCMSImageLoader } from "../../utils/next";
 interface Props {
   product: Product;
   categories: Category[];
+  products: Product[];
 }
 
 export default function ProductDetailPage({
@@ -51,7 +52,7 @@ export default function ProductDetailPage({
         </div>
         <List className="flex flex-wrap gap-2 p-2 justify-center">
           {photos?.map(({ id, alt, url }, index) => (
-            <div
+            <li
               className={`relative w-16 h-16 cursor-poiner border-2 ${
                 index === selected ? "border-primary" : ""
               }`}
@@ -65,7 +66,7 @@ export default function ProductDetailPage({
                 alt={alt}
                 loader={datoCMSImageLoader}
               />
-            </div>
+            </li>
           ))}
         </List>
       </div>
@@ -102,14 +103,18 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     };
 
   const product = await getProduct(params.slugName as string);
+  const products = await getProducts();
   const categories = await getCategories();
   return {
-    props: { product, categories },
+    props: { product, categories, products },
   };
 };
 
 const getLayout: GetLayout = (page, pageProps: Props) => (
-  <DetailsProductLayout categories={pageProps.categories}>
+  <DetailsProductLayout
+    categories={pageProps.categories}
+    products={pageProps.products}
+  >
     {page}
   </DetailsProductLayout>
 );
