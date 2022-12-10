@@ -40,14 +40,14 @@ export default function CategoryPage({ products, categories }: Props) {
   return (
     <>
       <Head>
-        <title>Plushka - {pageCategory?.name || ""}</title>
+        <title>{`Plushka - ${pageCategory?.name || ""}`}</title>
         <meta
           name="description"
           content="Rękodzieło z pasją. Przytulanki, zabawki, biżuteria."
         />
       </Head>
       <PageTitle>{pageCategory?.name}</PageTitle>
-   
+
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5 lg:grid-cols-3">
         {categoryProducts.map((item) => (
           <ProductListItem key={item.id} item={item} />

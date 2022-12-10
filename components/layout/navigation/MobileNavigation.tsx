@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { useRouter } from "next/router";
 import logo from "../../../assets/logo.png";
 import { CategoryWitchChildren } from "../../../types/category";
 import { datoCMSImageLoader } from "../../../utils/next";
@@ -16,6 +17,7 @@ export default function MobileNavigation({
   onClose,
   categories,
 }: Props) {
+  const router = useRouter();
   return (
     <div
       className={`fixed top-0 left-0 w-full h-screen bg-white overflow-hidden ease-out duration-300 ${
@@ -38,6 +40,7 @@ export default function MobileNavigation({
       <List className="flex flex-col px-2 my-5 w-full justify-center overflow-auto">
         {categories.map((category) => (
           <MobileNavigationElement
+            asPath={router.asPath}
             category={category}
             onCloseNavigation={onClose}
             key={category.id}
