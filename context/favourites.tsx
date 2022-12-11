@@ -18,7 +18,6 @@ interface FavouritesContex {
   toggle: (i: Product) => void;
 }
 const validator = (data: Favourite[]) => {
-  console.log("data", data);
   if (!data || !Array.isArray(data)) return false;
   for (let i = 0; i < data.length; i++) {
     const item = data[i];
@@ -51,7 +50,7 @@ export const FavouriteProvider = ({ children }: { children: ReactNode }) => {
     const state = localStorageManager.state;
     if (state) setFavourites(state);
   }, []);
-  
+
   useEffect(() => {
     localStorageManager.save(favourites);
   }, [favourites]);

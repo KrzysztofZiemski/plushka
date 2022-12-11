@@ -12,6 +12,7 @@ import { useFavourites } from "../../context/favourites";
 import { Category } from "../../types/category";
 import { GetLayout } from "../../types/page";
 import { Product } from "../../types/product";
+import { Amount } from "../../utils/amount";
 import { datoCMSImageLoader } from "../../utils/next";
 
 interface Props {
@@ -81,7 +82,9 @@ export default function ProductDetailPage({ product }: Props) {
       <div className="px-4 grow">
         <div className="flex items-center justify-between mb-4 ">
           <h1 className="capitalize font-bold text-xl">{name}</h1>
-          <p className="font-medium text-lg">{price} zł</p>
+          <p className="font-medium text-lg">
+            {new Amount(price, "PLN").price}
+          </p>
         </div>
         <Markdown text={textDescription} className="mb-4" />
       </div>

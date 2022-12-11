@@ -2,6 +2,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { HTMLAttributes, useCallback } from "react";
 import { Product } from "../../types/product";
+import { Amount } from "../../utils/amount";
 import { datoCMSImageLoader } from "../../utils/next";
 import { getPath } from "../../utils/routing";
 import BottomProduct from "../atom/bottomProduct/BottomProduct";
@@ -63,7 +64,9 @@ export default function ProductListItem({
           {name}
         </h2>
         <p>{shortDescription}</p>
-        <div className="font-medium text-lg text-right mb-9">{`${price} zł`}</div>
+        <div className="font-medium text-lg text-right mb-9">
+          {new Amount(price, "PLN").price}
+        </div>
         <BottomProduct
           toggleFavourite={handleToggleFavourite}
           colors={productColors}

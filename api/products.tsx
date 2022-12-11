@@ -37,6 +37,12 @@ export const getProducts = async (): Promise<Product[]> => {
               slugCategory
             }
           }
+          colors {
+            colorName
+            colorValue {
+              hex
+            }
+          }
         }
       }
     `,
@@ -80,6 +86,13 @@ export const getProduct = async (slugName: string): Promise<Product> => {
           }
 
           slugName
+
+          colors{
+            colorName
+            colorValue{
+              hex
+            }
+          }
         }
       }
     `,
