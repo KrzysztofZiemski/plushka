@@ -36,7 +36,7 @@ export default function FavouritesPage({ products, categories }: Props) {
         <title>Plushka - ulubione</title>
 
         <meta name="description" content={description} />
-        <meta property="og:title" content="Plushka" />
+        <meta property="og:title" content="Plushka - Rękodzieło z pasją" />
         <meta property="og:image" content={logo.src} />
         <meta property="og:description" content={description} />
       </Head>

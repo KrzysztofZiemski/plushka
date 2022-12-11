@@ -48,7 +48,7 @@ export default function CategoryPage({ products, categories }: Props) {
         <title>{`Plushka - ${pageCategory?.name || ""}`}</title>
 
         <meta name="description" content={description} />
-        <meta property="og:title" content="Plushka" />
+        <meta property="og:title" content={`Plushka - ${pageCategory?.name}`} />
         <meta property="og:image" content={logo.src} />
         <meta property="og:description" content={description} />
       </Head>

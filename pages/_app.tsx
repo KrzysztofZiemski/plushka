@@ -18,7 +18,7 @@ type AppPropsWithLayout = AppProps & {
 
 export default function App({ Component, pageProps }: AppPropsWithLayout) {
   const getLayout = Component.getLayout ?? ((page) => page);
-  const router = useRouter();
+
   useVH();
 
   return (
@@ -48,10 +48,6 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
           <meta name="theme-color" content="#ffffff" />
           <meta property="og:locale" content="pl_PL" />
           <meta property="og:type" content="website" />
-          <meta
-            property="og:url"
-            content={`${router.pathname}?type=facebook`}
-          />
         </Head>
         {getLayout(<Component {...pageProps} />, pageProps)}
       </ContextProviders>
