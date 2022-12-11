@@ -3,6 +3,7 @@ import Head from "next/head";
 import { getCategories } from "../api/categories";
 import { getProducts } from "../api/products";
 import logo from "../assets/logo.png";
+import PageTitle from "../components/atom/pageTitle/pageTitle";
 import MainLayout from "../components/layout/MainLayout";
 import ProductListItem from "../components/molecules/ProductListItem";
 import { useFavourites } from "../context/favourites";
@@ -30,8 +31,10 @@ export default function HomePage({ products, categories }: Props) {
         <meta property="og:image" content={logo.src} />
         <meta property="og:description" content={description} />
       </Head>
+      <PageTitle>Najnowsze</PageTitle>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5 lg:grid-cols-3">
-        {products.map((item) => (
+        {products.length === 0 && <p className="my-6 pl-2">Brak wyników</p>}
+        {products.slice(0, 20).map((item) => (
           <ProductListItem
             toggleFavourite={toggle}
             key={item.id}

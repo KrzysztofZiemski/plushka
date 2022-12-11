@@ -46,7 +46,6 @@ export default function CategoryPage({ products, categories }: Props) {
     <>
       <Head>
         <title>{`Plushka - ${pageCategory?.name || ""}`}</title>
-
         <meta name="description" content={description} />
         <meta property="og:title" content={`Plushka - ${pageCategory?.name}`} />
         <meta property="og:image" content={logo.src} />
@@ -61,6 +60,9 @@ export default function CategoryPage({ products, categories }: Props) {
             : ""
         }`}
       >
+        {categoryProducts.length === 0 && (
+          <p className="my-6 pl-2">Brak wyników</p>
+        )}
         {categoryProducts.map((item) => (
           <ProductListItem
             key={item.id}

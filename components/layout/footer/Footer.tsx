@@ -19,7 +19,7 @@ export default function Footer({ categories }: Props) {
   return (
     <footer className="flex bg-dark-background text-white p-16 place-content-center">
       <div>
-        <h3 className="font-medium text-lg mb-8 mx-2 uppercase">Plishka</h3>
+        <h3 className="font-medium md:text-lg mb-8 mx-2 uppercase">Plishka</h3>
         <List>
           {categories
             // .filter(({ parent }) => !parent)
@@ -35,10 +35,10 @@ export default function Footer({ categories }: Props) {
         style={{ marginLeft: "10%", marginRight: "10%" }}
       ></div>
       <div>
-        <h3 className="font-medium text-lg mb-8 mx-2 uppercase">
+        <h3 className="font-medium md:text-lg mb-8 mx-2 uppercase">
           Można mnie znaleźć
         </h3>
-        <List className="flex gap-4">
+        <List className="flex gap-4 flex-wrap">
           <ListElement>
             <a
               href="https://www.facebook.com/paula.z.handmade/"
