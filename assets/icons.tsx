@@ -4,6 +4,10 @@ import HeartIcon from "./icons/heart-icon.svg";
 import CloseIcon from "./icons/close-icon.svg";
 import LoadingIcon from "./icons/loading-icon.svg";
 import ExpandedIcon from "./icons/expanded-icon.svg";
+import FacebookIcon from "./icons/facebook-icon.svg";
+import TwitterIcon from "./icons/twitter-icon.svg";
+import AllegroIcon from "./icons/allegro-icon.svg";
+import InstagramIcon from "./icons/instagram-icon.svg";
 
 export {
   MenuBurgerIcon,
@@ -12,4 +16,8 @@ export {
   CloseIcon,
   LoadingIcon,
   ExpandedIcon,
+  FacebookIcon,
+  TwitterIcon,
+  AllegroIcon,
+  InstagramIcon,
 };

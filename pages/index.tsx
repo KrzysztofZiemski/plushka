@@ -2,14 +2,13 @@ import { GetStaticProps } from "next";
 import Head from "next/head";
 import { getCategories } from "../api/categories";
 import { getProducts } from "../api/products";
+import logo from "../assets/logo.png";
 import MainLayout from "../components/layout/MainLayout";
 import ProductListItem from "../components/molecules/ProductListItem";
 import { useFavourites } from "../context/favourites";
 import { Category } from "../types/category";
 import { GetLayout } from "../types/page";
 import { Product } from "../types/product";
-import logo from "../assets/logo.png";
-import { useRouter } from "next/router";
 
 interface Props {
   products: Product[];
@@ -18,9 +17,9 @@ interface Props {
 
 export default function HomePage({ products, categories }: Props) {
   const { favourites, toggle } = useFavourites();
-  const router = useRouter();
 
-  const description = "Rękodzieło z pasją. Przytulanki, zabawki, biżuteria. ";
+  const description =
+    "Rękodzieło z pasją. Ręcznie robione przytulanki, biżuteria, chusty. Wyroby gotowe jak i na zamówienie ";
 
   return (
     <>
