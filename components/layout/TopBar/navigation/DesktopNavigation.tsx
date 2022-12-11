@@ -8,6 +8,7 @@ import ListElement from "../../../atom/list/ListElement";
 import { findInfiniteChildrenIsActive } from "./helpers";
 import crochetImage from "../../../../assets/crochet.png";
 import FavouriteButton from "../../../atom/favouriteButton/FavouriteButton";
+import { useFavourites } from "../../../../context/favourites";
 
 interface Props {
   categories: CategoryWitchChildren[];
@@ -20,6 +21,8 @@ export default function DesktopNavigation({
   path,
   goToFavourites,
 }: Props) {
+  const { favourites } = useFavourites();
+
   const activeIndexCategory = useMemo(() => {
     return categories.findIndex((item) => {
       return findInfiniteChildrenIsActive(item, path);
@@ -44,7 +47,6 @@ export default function DesktopNavigation({
             marginBottom: "1px",
             marginLeft: "-1px",
             marginRight: "-1px",
-            filter: "blur(.6px)",
             borderColor: "#0000004A",
           }}
         >
@@ -70,7 +72,10 @@ export default function DesktopNavigation({
               );
             })}
             <ListElement className="ml-auto">
-              <FavouriteButton onClick={goToFavourites} />
+              <FavouriteButton
+                onClick={goToFavourites}
+                count={favourites.length}
+              />
             </ListElement>
           </List>
         </div>

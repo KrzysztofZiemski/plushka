@@ -31,7 +31,7 @@ export default function MobileTopBar({
   const handleClose = () => setIsMobileNavigationOpen(false);
 
   return (
-    <div className="main-shadow w-full flex items-center justify-between gap-3 px-2 py-2 mb-3 md:hidden">
+    <div className="sticky top-0 z-10 bg-white main-shadow w-full flex items-center justify-between gap-3 px-2 py-2 mb-3 md:hidden">
       <Link href="/" className="flex items-center shrink-0 ">
         <Image
           src={logo}

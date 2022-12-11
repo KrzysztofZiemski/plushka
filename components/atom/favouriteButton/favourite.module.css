@@ -1,0 +1,7 @@
+.svg path{
+    stroke: transparent;
+}
+
+.stroke path{
+    stroke-width: 0;
+}

@@ -17,6 +17,7 @@ export default function TopBar({ products, categories }: Props) {
     () => getTreeCategories(categories),
     [categories]
   );
+
   const goToProduct = useCallback(
     (productName: string) => {
       router.push(getPath("product-detail")(productName));

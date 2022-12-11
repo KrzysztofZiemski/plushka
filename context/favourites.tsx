@@ -51,6 +51,7 @@ export const FavouriteProvider = ({ children }: { children: ReactNode }) => {
     const state = localStorageManager.state;
     if (state) setFavourites(state);
   }, []);
+  
   useEffect(() => {
     localStorageManager.save(favourites);
   }, [favourites]);

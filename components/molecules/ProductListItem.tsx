@@ -21,15 +21,18 @@ export default function ProductListItem({
   const router = useRouter();
   const { photos, name, shortDescription, price, productColors, id, slugName } =
     item;
-    
+
   const goToProductDeatail = () => {
     router.push(getPath("product-detail")(slugName));
   };
 
   const mainPhoto = photos[0];
 
-  const handleToggleFavourite = useCallback(() => toggleFavourite(item), [item, toggleFavourite]);
-  
+  const handleToggleFavourite = useCallback(
+    () => toggleFavourite(item),
+    [item, toggleFavourite]
+  );
+
   return (
     <div
       className={`flex flex-col main-shadow ${className || ""}`}

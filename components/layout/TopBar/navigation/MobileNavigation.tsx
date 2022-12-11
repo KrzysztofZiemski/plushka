@@ -1,6 +1,9 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
 import logo from "../../../../assets/logo.png";
+import { useFavourites } from "../../../../context/favourites";
+import useStopScrolling from "../../../../hooks/useStopScrolling";
 import { CategoryWitchChildren } from "../../../../types/category";
 import { datoCMSImageLoader } from "../../../../utils/next";
 import { getPath } from "../../../../utils/routing";
@@ -20,9 +23,16 @@ export default function MobileNavigation({
   categories,
 }: Props) {
   const router = useRouter();
+  const { favourites } = useFavourites();
+  const { setStopped } = useStopScrolling(isOpen);
+
+  useEffect(() => {
+    setStopped(isOpen);
+  }, [isOpen, setStopped]);
 
   const goToFavourites = () => {
     router.push(getPath("favourites")(""));
+    onClose();
   };
 
   return (
@@ -45,7 +55,7 @@ export default function MobileNavigation({
         />
       </div>
       <div className="text-right px-2">
-        <FavouriteButton onClick={goToFavourites} />
+        <FavouriteButton onClick={goToFavourites} count={favourites.length} />
       </div>
 
       <List className="flex flex-col px-2  w-full justify-center overflow-auto">

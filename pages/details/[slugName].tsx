@@ -1,13 +1,14 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
 import Image from "next/image";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { getCategories } from "../../api/categories";
 import { getProduct, getProducts } from "../../api/products";
 import BottomProduct from "../../components/atom/bottomProduct/BottomProduct";
 import List from "../../components/atom/list/List";
 import DetailsProductLayout from "../../components/layout/DetailsProductLayout";
 import Markdown from "../../components/molecules/markdown/Markdown";
+import { useFavourites } from "../../context/favourites";
 import { Category } from "../../types/category";
 import { GetLayout } from "../../types/page";
 import { Product } from "../../types/product";
@@ -19,17 +20,24 @@ interface Props {
   products: Product[];
 }
 
-export default function ProductDetailPage({
-  product: {
+export default function ProductDetailPage({ product }: Props) {
+  const {
     name,
     shortDescription,
     textDescription,
     price,
     photos,
     productColors,
-  },
-}: Props) {
+    id,
+  } = product;
+
   const [selected, setSelected] = useState(0);
+  const { toggle, favourites } = useFavourites();
+
+  const handleToggleFavourite = useCallback(
+    () => toggle(product),
+    [product, toggle]
+  );
 
   const selectedPhoto = photos[selected];
   return (
@@ -77,7 +85,12 @@ export default function ProductDetailPage({
         </div>
         <Markdown text={textDescription} className="mb-4" />
       </div>
-      <BottomProduct colors={productColors} className="mt-auto py-4  mt-auto" />
+      <BottomProduct
+        colors={productColors}
+        className="mt-auto py-4  mt-auto"
+        toggleFavourite={handleToggleFavourite}
+        isFavourite={!!favourites.find(({ idProduct }) => idProduct === id)}
+      />
     </>
   );
 }

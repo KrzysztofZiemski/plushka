@@ -32,7 +32,11 @@ export default function BottomProduct({
       className={`flex items-center h-10 border-t border-grey flex justify-between ${className}`}
       {...props}
     >
-      <FavouriteButton onClick={toggleFavourite} className={``} />
+      <FavouriteButton
+        onClick={toggleFavourite}
+        iconProps={{ className: "w-5 h-auto" }}
+        filled={isFavourite}
+      />
       <div className="flex gap-3">
         {colors.map((el) => {
           const color = dictionaryColors[el.colorsBase];
