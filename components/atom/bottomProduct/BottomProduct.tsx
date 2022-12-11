@@ -24,6 +24,7 @@ export default function BottomProduct({
         onClick={toggleFavourite}
         iconProps={{ className: "w-5 h-auto" }}
         filled={isFavourite}
+        aria-label={isFavourite ? "usuń z ulubionych" : "dodaj do ulubionych"}
       />
       <div className="flex gap-3">
         {colors.map(({ colorName, colorValue }) => {

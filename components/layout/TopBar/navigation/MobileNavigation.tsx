@@ -55,7 +55,12 @@ export default function MobileNavigation({
         />
       </div>
       <div className="text-right px-2">
-        <FavouriteButton onClick={goToFavourites} count={favourites.length} />
+        <FavouriteButton
+          onClick={goToFavourites}
+          count={favourites.length}
+          role="link"
+          aria-label={"ulubione"}
+        />
       </div>
 
       <List className="flex flex-col px-2  w-full justify-center overflow-auto">

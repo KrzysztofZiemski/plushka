@@ -1,12 +1,10 @@
 import Link from "next/link";
 import React, { useMemo } from "react";
-import Image from "next/image";
 import { CategoryWitchChildren } from "../../../../types/category";
 import { getPath } from "../../../../utils/routing";
 import List from "../../../atom/list/List";
 import ListElement from "../../../atom/list/ListElement";
 import { findInfiniteChildrenIsActive } from "./helpers";
-import crochetImage from "../../../../assets/crochet.png";
 import FavouriteButton from "../../../atom/favouriteButton/FavouriteButton";
 import { useFavourites } from "../../../../context/favourites";
 
@@ -31,58 +29,39 @@ export default function DesktopNavigation({
 
   return (
     <div className="">
-      <div className="flex w-full">
-        <div className="shrink-0 flex">
-          <Image
-            className="mt-auto opacity-50"
-            src={crochetImage}
-            alt="crochet"
-            width={60.66}
-            height={48.66}
-          />
-        </div>
-        <div
-          className="grow border-b border-black self-end text-center leading-10 text-lg"
-          style={{
-            marginBottom: "1px",
-            marginLeft: "-1px",
-            marginRight: "-1px",
-            borderColor: "#0000004A",
-          }}
-        >
-          <List className="flex px-2 w-full">
-            {categories.map((item, index) => {
-              const isActive = index === activeIndexCategory;
-
-              return (
-                <ListElement
-                  key={item.id}
-                  style={{ marginRight: "5%", marginLeft: "5%" }}
-                  className="flex items-end"
-                >
-                  <Link
-                    href={getPath("category")(item.slugCategory)}
-                    className={` ${
-                      isActive ? "text-primary" : ""
-                    } font-semibold ease-out hover:text-primary whitespace-nowrap shrink text-lg`}
-                  >
-                    {item.name}
-                  </Link>
-                </ListElement>
-              );
-            })}
-            <ListElement className="ml-auto">
-              <FavouriteButton
-                onClick={goToFavourites}
-                count={favourites.length}
-              />
+      <List className="flex w-full grow border-b border-black">
+        {categories.map((item, index) => {
+          const isActive = index === activeIndexCategory;
+          return (
+            <ListElement
+              key={item.id}
+              // style={{ marginRight: "5%", marginLeft: "5%" }}
+              className="flex items-end mx-5"
+            >
+              <Link
+                href={getPath("category")(item.slugCategory)}
+                className={` ${
+                  isActive ? "text-primary" : ""
+                } font-semibold ease-out hover:text-primary whitespace-nowrap shrink text-lg  px-5 mb-2`}
+              >
+                {item.name}
+              </Link>
             </ListElement>
-          </List>
-        </div>
-      </div>
+          );
+        })}
+        <ListElement className="ml-auto">
+          <FavouriteButton
+            onClick={goToFavourites}
+            count={favourites.length}
+            role="link"
+            aria-label={"ulubione"}
+          />
+        </ListElement>
+      </List>
+
       <div className="grow">
         {activeIndexCategory >= 0 && (
-          <List className="flex p-2 w-full pl-9">
+          <List className="flex  w-full gap-6">
             {categories[activeIndexCategory].childrens.map((item, index) => {
               const isActive = findInfiniteChildrenIsActive(
                 item as CategoryWitchChildren,
@@ -90,12 +69,12 @@ export default function DesktopNavigation({
               );
 
               return (
-                <ListElement key={item.id} className="relative px-10 py-1">
+                <ListElement key={item.id}>
                   <Link
                     href={getPath("category")(item.slugCategory)}
                     className={` ${
                       isActive ? "text-primary" : ""
-                    } text-base m font-semibold ease-out hover:text-primary whitespace-nowrap shrink-0`}
+                    } py-9 text-base font-semibold ease-out hover:text-primary whitespace-nowrap shrink-0`}
                   >
                     {item.name}
                   </Link>
