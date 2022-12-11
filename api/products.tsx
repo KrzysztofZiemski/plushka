@@ -13,10 +13,6 @@ export const getProducts = async (): Promise<Product[]> => {
           price
           textDescription
           shortDescription
-          productColors {
-            id
-            colorsBase
-          }
           tags {
             id
             tag
@@ -35,6 +31,12 @@ export const getProducts = async (): Promise<Product[]> => {
               name
               id
               slugCategory
+            }
+          }
+          colors {
+            colorName
+            colorValue {
+              hex
             }
           }
         }
@@ -48,16 +50,12 @@ export const getProduct = async (slugName: string): Promise<Product> => {
   const result = await client.query({
     query: gql`
       query getProduct {
-        product(filter: { slugName: { eq: "chusta-intense" } }) {
+        product(filter: { slugName: { eq: "${slugName}" } }) {
           id
           name
           price
           textDescription
           shortDescription
-          productColors {
-            id
-            colorsBase
-          }
           categories {
             name
             slugCategory
@@ -80,6 +78,13 @@ export const getProduct = async (slugName: string): Promise<Product> => {
           }
 
           slugName
+
+          colors{
+            colorName
+            colorValue{
+              hex
+            }
+          }
         }
       }
     `,

@@ -1,26 +1,37 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { HTMLAttributes } from "react";
+import { HTMLAttributes, useCallback } from "react";
 import { Product } from "../../types/product";
+import { Amount } from "../../utils/amount";
 import { datoCMSImageLoader } from "../../utils/next";
 import { getPath } from "../../utils/routing";
-import ColorBars from "../atom/colorsBars/ColorBars";
+import BottomProduct from "../atom/bottomProduct/BottomProduct";
 
 interface Props extends HTMLAttributes<HTMLDivElement> {
   item: Product;
+  toggleFavourite: (product: Product) => void;
+  isFavourite: boolean;
 }
 export default function ProductListItem({
-  item: { photos, name, shortDescription, price, productColors, id, slugName },
+  item,
   className,
+  toggleFavourite,
+  isFavourite,
   ...props
 }: Props) {
   const router = useRouter();
+  const { photos, name, shortDescription, price, colors, id, slugName } = item;
 
   const goToProductDeatail = () => {
     router.push(getPath("product-detail")(slugName));
   };
 
   const mainPhoto = photos[0];
+
+  const handleToggleFavourite = useCallback(
+    () => toggleFavourite(item),
+    [item, toggleFavourite]
+  );
 
   return (
     <div
@@ -52,8 +63,15 @@ export default function ProductListItem({
           {name}
         </h2>
         <p>{shortDescription}</p>
-        <div className="font-medium text-lg text-right mb-9">{`${price} zł`}</div>
-        <ColorBars colors={productColors} className="mt-auto py-4 mt-auto" />
+        <div className="font-medium text-lg text-right mb-9">
+          {new Amount(price, "PLN").price}
+        </div>
+        <BottomProduct
+          toggleFavourite={handleToggleFavourite}
+          colors={colors}
+          className="mt-auto py-4 mt-auto"
+          isFavourite={isFavourite}
+        />
       </div>
     </div>
   );

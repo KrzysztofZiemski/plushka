@@ -1,9 +1,5 @@
 /*  1.2077 */
 
-.imageContainerSize {
-  height: 56px;
-  width: auto;
-}
 .listContainer ul{
   max-height: 0;
 }
