@@ -5,6 +5,7 @@ import { getCategories } from "../api/categories";
 import { getProducts } from "../api/products";
 import MainLayout from "../components/layout/MainLayout";
 import ProductListItem from "../components/molecules/ProductListItem";
+import { useFavourites } from "../context/favourites";
 import { Category } from "../types/category";
 import { GetLayout } from "../types/page";
 import { Product } from "../types/product";
@@ -16,6 +17,8 @@ interface Props {
 }
 
 export default function HomePage({ products, categories }: Props) {
+  const { favourites, toggle } = useFavourites();
+
   return (
     <>
       <Head>
@@ -27,7 +30,12 @@ export default function HomePage({ products, categories }: Props) {
       </Head>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5 lg:grid-cols-3">
         {products.map((item) => (
-          <ProductListItem key={item.id} item={item} />
+          <ProductListItem
+            toggleFavourite={toggle}
+            key={item.id}
+            item={item}
+            isFavourite={!!favourites.find((fav) => fav.idProduct === item.id)}
+          />
         ))}
       </div>
     </>
