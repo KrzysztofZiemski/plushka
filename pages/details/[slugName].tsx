@@ -7,6 +7,7 @@ import { getProduct, getProducts } from "../../api/products";
 import BottomProduct from "../../components/atom/bottomProduct/BottomProduct";
 import List from "../../components/atom/list/List";
 import DetailsProductLayout from "../../components/layout/DetailsProductLayout";
+import FullScreenImage from "../../components/molecules/FullScreenImage";
 import Markdown from "../../components/molecules/markdown/Markdown";
 import { useFavourites } from "../../context/favourites";
 import { Category } from "../../types/category";
@@ -27,6 +28,7 @@ export default function ProductDetailPage({ product }: Props) {
 
   const [selected, setSelected] = useState(0);
   const { toggle, favourites } = useFavourites();
+  const [fullImageOpen, setFullImageOpen] = useState(false);
 
   const handleToggleFavourite = useCallback(
     () => toggle(product),
@@ -44,11 +46,13 @@ export default function ProductDetailPage({ product }: Props) {
         <div className="p-2 border-2">
           <div className="relative w-full h-96 md:half-screen-height">
             <Image
+              onClick={() => setFullImageOpen(true)}
               loader={datoCMSImageLoader}
               src={selectedPhoto.url}
               alt={selectedPhoto.alt}
+              loading="lazy"
               fill
-              className="object-contain"
+              className="object-contain cursor-pointer"
             />
           </div>
         </div>
@@ -62,6 +66,7 @@ export default function ProductDetailPage({ product }: Props) {
               onClick={() => setSelected(index)}
             >
               <Image
+                loading="lazy"
                 className="object-cover"
                 fill
                 src={url}
@@ -87,6 +92,13 @@ export default function ProductDetailPage({ product }: Props) {
         toggleFavourite={handleToggleFavourite}
         isFavourite={!!favourites.find(({ idProduct }) => idProduct === id)}
       />
+      {fullImageOpen && (
+        <FullScreenImage
+          src={selectedPhoto.url}
+          alt={selectedPhoto.alt}
+          onClose={() => setFullImageOpen(false)}
+        />
+      )}
     </>
   );
 }

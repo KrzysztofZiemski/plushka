@@ -35,10 +35,10 @@ export default function DesktopTopBar({
   return (
     <div className="hidden w-full bg-white z-10 px-6 py-6  md:block">
       <div className="flex gap-3 w-full">
-        <Link href={"/"} className="shrink-0">
+        <Link href={"/"} className="shrink-0" style={{ marginRight: "8%" }}>
           <Image src={logo} alt="logo Plushka" className="h-40 w-auto" />
         </Link>
-        <div className="w-full">
+        <div className="grow">
           <DesktopNavigation
             categories={categories}
             path={router.asPath}
