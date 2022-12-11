@@ -13,6 +13,7 @@ import List from "../../atom/list/List";
 import HintListItem from "../../molecules/HintListItem";
 import MobileNavigation from "./navigation/MobileNavigation";
 import styles from "./topBar.module.css";
+import ListElement from "../../atom/list/ListElement";
 
 interface Props {
   products: Product[];
@@ -29,6 +30,7 @@ export default function MobileTopBar({
 
   const handleToggleMenu = () => setIsMobileNavigationOpen((prev) => !prev);
   const handleClose = () => setIsMobileNavigationOpen(false);
+  const isEmptyResults = search.length >= 3 && filtered.length === 0;
 
   return (
     <div className="sticky top-0 z-10 bg-white main-shadow w-full flex items-center justify-between gap-3 px-2 py-2 mb-3 md:hidden">
@@ -49,7 +51,8 @@ export default function MobileTopBar({
             aria-label="Search"
           />
           <div className={`relative ${styles.listContainer} `}>
-            <List className="absolute ease-in duration-100 rounded overflow-auto box-shadow max-h-60 top-0 inset-x-0 z-20 bg-white">
+            <List className="absolute drop-shadow-lg ease-in duration-100 rounded overflow-auto box-shadow max-h-60 top-0 inset-x-0 z-20 bg-white">
+              {isEmptyResults && <ListElement>Brak wyników</ListElement>}
               {filtered.map((product) => {
                 return (
                   <HintListItem
