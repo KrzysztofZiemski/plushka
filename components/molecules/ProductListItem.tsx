@@ -20,8 +20,7 @@ export default function ProductListItem({
   ...props
 }: Props) {
   const router = useRouter();
-  const { photos, name, shortDescription, price, productColors, id, slugName } =
-    item;
+  const { photos, name, shortDescription, price, colors, id, slugName } = item;
 
   const goToProductDeatail = () => {
     router.push(getPath("product-detail")(slugName));
@@ -69,7 +68,7 @@ export default function ProductListItem({
         </div>
         <BottomProduct
           toggleFavourite={handleToggleFavourite}
-          colors={productColors}
+          colors={colors}
           className="mt-auto py-4 mt-auto"
           isFavourite={isFavourite}
         />

@@ -22,15 +22,8 @@ interface Props {
 }
 
 export default function ProductDetailPage({ product }: Props) {
-  const {
-    name,
-    shortDescription,
-    textDescription,
-    price,
-    photos,
-    productColors,
-    id,
-  } = product;
+  const { name, shortDescription, textDescription, price, photos, colors, id } =
+    product;
 
   const [selected, setSelected] = useState(0);
   const { toggle, favourites } = useFavourites();
@@ -89,7 +82,7 @@ export default function ProductDetailPage({ product }: Props) {
         <Markdown text={textDescription} className="mb-4" />
       </div>
       <BottomProduct
-        colors={productColors}
+        colors={colors}
         className="mt-auto py-4  mt-auto"
         toggleFavourite={handleToggleFavourite}
         isFavourite={!!favourites.find(({ idProduct }) => idProduct === id)}

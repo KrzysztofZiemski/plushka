@@ -1,20 +1,10 @@
 import { Category } from "./category";
 
-export enum Color {
-  black = "czarny",
-  blue = "niebieski",
-  yellow = "żółty",
-  white = "biały",
-  brown = "brązowy",
-  violet = "fioletowy",
-  orange = "pomarańczowy",
-  green = "zielony",
-  pink = "różowy",
-}
-
 export interface ProductColor {
-  id: string;
-  colorsBase: Color;
+  colorName: string;
+  colorValue: {
+    hex: string;
+  };
 }
 export interface ProductPhoto {
   id: string;
@@ -27,7 +17,7 @@ export interface Product {
   name: string;
   price: number;
   shortDescription: string;
-  productColors: ProductColor[];
+  colors: ProductColor[];
   tags: string;
   photos: ProductPhoto[];
   categories: Category[];

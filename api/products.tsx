@@ -13,10 +13,6 @@ export const getProducts = async (): Promise<Product[]> => {
           price
           textDescription
           shortDescription
-          productColors {
-            id
-            colorsBase
-          }
           tags {
             id
             tag
@@ -60,10 +56,6 @@ export const getProduct = async (slugName: string): Promise<Product> => {
           price
           textDescription
           shortDescription
-          productColors {
-            id
-            colorsBase
-          }
           categories {
             name
             slugCategory

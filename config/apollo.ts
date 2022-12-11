@@ -5,6 +5,8 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
   headers: {
     authorization: `Bearer ${process.env.DATO_CMS_API_KEY}`,
+    "X-Include-Drafts":
+      process.env.NODE_ENV === "development" ? "true" : "false",
   },
 });
 
