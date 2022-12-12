@@ -16,6 +16,7 @@ const MainButton = ({
   className,
   focus,
   ripple = true,
+  size = "normal",
   ...props
 }: MainButtonProps) => {
   const ref = useRef<null | HTMLButtonElement>(null);
@@ -51,7 +52,9 @@ const MainButton = ({
 
   return (
     <button
-      className={`bg-primary text-white ${styles.mainButton} ${className}`}
+      className={`bg-primary flex items-center justify-center text-base text-white ${
+        styles.mainButton
+      } ${size === "small" ? `h-8 p-0!` : ""} ${className}`}
       onClick={ripple ? createRipple : onClick}
       ref={ref}
       {...props}

@@ -31,6 +31,7 @@ export default function MainLayout({ products, children, categories }: Props) {
       <main className="w-full max-w-6xl grow md:mx-4 xl:mx-auto mb-10">
         {isLoading ? <Loader className="mx-auto" /> : children}
       </main>
+
       <Footer categories={categories} />
     </div>
   );

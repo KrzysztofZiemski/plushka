@@ -6,6 +6,9 @@ export default function TextButton({
   ...props
 }: ButtonHTMLAttributes<HTMLButtonElement>) {
   return (
-    <button className={`${styles.textButton} ${className || ""}`} {...props} />
+    <button
+      className={`${styles.textButton} text-primary ${className || ""}`}
+      {...props}
+    />
   );
 }

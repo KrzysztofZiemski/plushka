@@ -8,6 +8,7 @@ import { useVH } from "../hooks/useVH";
 import "../styles/globals.css";
 import { GetLayout } from "../types/page";
 import { useRouter } from "next/router";
+import CookiesBanner from "../components/layout/CookiesBanner";
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: GetLayout;
@@ -49,6 +50,7 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
           <meta property="og:locale" content="pl_PL" />
           <meta property="og:type" content="website" />
         </Head>
+        <CookiesBanner />
         {getLayout(<Component {...pageProps} />, pageProps)}
       </ContextProviders>
     </ApolloProvider>

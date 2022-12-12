@@ -28,6 +28,9 @@ export default function Footer({ categories }: Props) {
                 <Link href={getPath("category")(slugCategory)}>{name}</Link>
               </ListElement>
             ))}
+          <ListElement>
+            <Link href={getPath("privacy")("")}>Polityka prywatności</Link>
+          </ListElement>
         </List>
       </div>
       <div
