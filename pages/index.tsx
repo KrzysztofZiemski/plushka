@@ -50,7 +50,6 @@ export default function HomePage({ products, categories }: Props) {
 export const getStaticProps: GetStaticProps = async () => {
   const products = await getProducts();
   const categories = await getCategories();
-
   return {
     props: { products, categories },
   };

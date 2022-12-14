@@ -1,16 +1,13 @@
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import Script from "next/script";
+import useConsent from "../../hooks/useConsent";
+import { isProduction } from "../../utils/next";
 import { getPath } from "../../utils/routing";
 import MainButton from "../atom/button/MainButton";
 import TextButton from "../atom/button/textButton";
-import Cookies from "js-cookie";
-import useConsent from "../../hooks/useConsent";
-import Script from "next/script";
-import { isProduction } from "../../utils/next";
 
 export default function CookiesBanner() {
   const { setConsent, cookieConstent } = useConsent();
-
   const handleAccept = () => {
     setConsent("agree");
   };
@@ -18,17 +15,17 @@ export default function CookiesBanner() {
     setConsent("necessary");
   };
 
-  if (isProduction() && cookieConstent === "agree")
+  if (cookieConstent === "agree")
     return (
       <>
         <Script
-          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.G_TAG}`}
+          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_G_TAG}`}
           strategy="afterInteractive"
         />
         <Script id="google-analytics" strategy="afterInteractive">
           {`window.dataLayer = window.dataLayer || [];function gtag(){window.dataLayer.push(arguments);}
           gtag('js', new Date());
-          gtag('config', '${process.env.G_TAG}');
+          gtag('config', '${process.env.NEXT_PUBLIC_G_TAG}');
           `}
         </Script>
       </>
