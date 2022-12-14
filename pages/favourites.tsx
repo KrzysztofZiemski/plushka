@@ -1,9 +1,9 @@
-import { GetStaticPaths, GetStaticProps } from "next";
+import { GetStaticProps } from "next";
 import Head from "next/head";
-import { useRouter } from "next/router";
 import { useMemo } from "react";
 import { getCategories } from "../api/categories";
 import { getProducts } from "../api/products";
+import logo from "../assets/logo.png";
 import PageTitle from "../components/atom/pageTitle/pageTitle";
 import MainLayout from "../components/layout/MainLayout";
 import ProductListItem from "../components/molecules/ProductListItem";
@@ -28,14 +28,17 @@ export default function FavouritesPage({ products, categories }: Props) {
       .filter((item) => item !== undefined) as Product[];
   }, [favourites, products]);
 
+  const description = "Rękodzieło z pasją. Przytulanki, zabawki, biżuteria. ";
+
   return (
     <>
       <Head>
         <title>Plushka - ulubione</title>
-        <meta
-          name="description"
-          content="Rękodzieło z pasją. Przytulanki, zabawki, biżuteria."
-        />
+
+        <meta name="description" content={description} />
+        <meta property="og:title" content="Plushka - Rękodzieło z pasją" />
+        <meta property="og:image" content={logo.src} />
+        <meta property="og:description" content={description} />
       </Head>
       <PageTitle>Ulubione</PageTitle>
 

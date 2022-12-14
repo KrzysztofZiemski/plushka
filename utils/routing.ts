@@ -1,11 +1,10 @@
-type Path = "product-detail" | "category" | "favourites";
-
 const paths = {
   "product-detail": (slugName: string) => `/details/${slugName}`,
   category: (slugCategory: string) => `/${slugCategory}`,
   favourites: () => "/favourites",
-};
+  privacy: () => "/privacy",
+} as const;
 
-export const getPath = (path: Path) => {
+export const getPath = (path: keyof typeof paths) => {
   return paths[path];
 };

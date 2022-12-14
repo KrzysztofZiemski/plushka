@@ -13,6 +13,7 @@ import DesktopNavigation from "./navigation/DesktopNavigation";
 import { getPath } from "../../../utils/routing";
 import { useCallback } from "react";
 import Link from "next/link";
+import ListElement from "../../atom/list/ListElement";
 
 interface Props {
   products: Product[];
@@ -31,6 +32,8 @@ export default function DesktopTopBar({
   const goToFavourites = useCallback(() => {
     router.push(getPath("favourites")(""));
   }, [router]);
+
+  const isEmptyResults = search.length >= 3 && filtered.length === 0;
 
   return (
     <div className="hidden w-full bg-white z-10 px-6 py-6  md:block">
@@ -54,7 +57,8 @@ export default function DesktopTopBar({
           onChange={(e) => setSearch(e.target.value)}
         />
         <div className={`relative ${styles.listContainer} `}>
-          <List className="absolute ease-in duration-100 rounded overflow-auto box-shadow max-h-60 top-0 inset-x-0 z-20 bg-white">
+          <List className="absolute drop-shadow-lg ease-in duration-100 rounded overflow-auto box-shadow max-h-60 top-0 inset-x-0 z-20 bg-white">
+            {isEmptyResults && <ListElement>Brak wyników</ListElement>}
             {filtered.map((product) => {
               return (
                 <HintListItem

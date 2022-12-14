@@ -36,11 +36,19 @@ export default function ProductDetailPage({ product }: Props) {
   );
 
   const selectedPhoto = photos[selected];
+  const description = shortDescription;
+
   return (
     <>
       <Head>
         <title>{`${name}`}</title>
         <meta name="description" content={shortDescription} />
+        <title>{`Plushka - ${name || ""}`}</title>
+
+        <meta name="description" content={description} />
+        <meta property="og:title" content="Plushka" />
+        <meta property="og:image" content={selectedPhoto.url} />
+        <meta property="og:description" content={description} />
       </Head>
       <div className="mb-2">
         <div className="p-2 border-2">

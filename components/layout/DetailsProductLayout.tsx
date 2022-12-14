@@ -3,6 +3,7 @@ import { ReactNode, useState } from "react";
 import { Category } from "../../types/category";
 import { Product } from "../../types/product";
 import Loader from "../atom/loader/Loader";
+import Footer from "./footer/Footer";
 import TopBar from "./TopBar/TopBar";
 
 interface Props {
@@ -33,6 +34,7 @@ export default function DetailsProductLayout({
       <main className="flex flex-col max-w-6xl grow md:mx-4 xl:mx-auto">
         {isLoading ? <Loader className="mx-auto" /> : children}
       </main>
+      <Footer categories={categories} />
     </div>
   );
 }

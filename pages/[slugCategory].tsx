@@ -11,6 +11,7 @@ import { useFavourites } from "../context/favourites";
 import { Category } from "../types/category";
 import { GetLayout } from "../types/page";
 import { Product } from "../types/product";
+import logo from "../assets/logo.png";
 
 interface Props {
   products: Product[];
@@ -39,14 +40,16 @@ export default function CategoryPage({ products, categories }: Props) {
     );
   }, [products, slugCategory]);
 
+  const description = `${pageCategory?.name} | Rękodzieło z pasją. Przytulanki, zabawki, biżuteria.`;
+
   return (
     <>
       <Head>
         <title>{`Plushka - ${pageCategory?.name || ""}`}</title>
-        <meta
-          name="description"
-          content="Rękodzieło z pasją. Przytulanki, zabawki, biżuteria."
-        />
+        <meta name="description" content={description} />
+        <meta property="og:title" content={`Plushka - ${pageCategory?.name}`} />
+        <meta property="og:image" content={logo.src} />
+        <meta property="og:description" content={description} />
       </Head>
       <PageTitle>{pageCategory?.name}</PageTitle>
 
@@ -57,6 +60,9 @@ export default function CategoryPage({ products, categories }: Props) {
             : ""
         }`}
       >
+        {categoryProducts.length === 0 && (
+          <p className="my-6 pl-2">Brak wyników</p>
+        )}
         {categoryProducts.map((item) => (
           <ProductListItem
             key={item.id}

@@ -7,7 +7,7 @@ export const getProducts = async (): Promise<Product[]> => {
   const result = await client.query({
     query: gql`
       query getProducts {
-        allProducts {
+        allProducts(orderBy: _updatedAt_DESC) {
           id
           name
           price
