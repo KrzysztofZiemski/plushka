@@ -1,15 +1,15 @@
 import Link from "next/link";
-import React, { useMemo } from "react";
-import { CategoryWitchChildren } from "../../../../types/category";
+import { useMemo } from "react";
+import { useFavourites } from "../../../../context/favourites";
+import { Category } from "../../../../types/category";
 import { getPath } from "../../../../utils/routing";
+import FavouriteButton from "../../../atom/favouriteButton/FavouriteButton";
 import List from "../../../atom/list/List";
 import ListElement from "../../../atom/list/ListElement";
 import { findInfiniteChildrenIsActive } from "./helpers";
-import FavouriteButton from "../../../atom/favouriteButton/FavouriteButton";
-import { useFavourites } from "../../../../context/favourites";
 
 interface Props {
-  categories: CategoryWitchChildren[];
+  categories: Category[];
   path: string;
   goToFavourites: () => void;
 }
@@ -32,6 +32,7 @@ export default function DesktopNavigation({
       <List className="flex w-full grow border-b border-black">
         {categories.map((item, index) => {
           const isActive = index === activeIndexCategory;
+
           return (
             <ListElement
               key={item.id}
@@ -39,12 +40,12 @@ export default function DesktopNavigation({
               className="flex items-end mx-5"
             >
               <Link
-                href={getPath("category")(item.slugCategory)}
+                href={getPath("category")(item.slug)}
                 className={` ${
                   isActive ? "text-primary" : ""
                 } font-semibold ease-out hover:text-primary whitespace-nowrap shrink text-lg  px-5 mb-2`}
               >
-                {item.name}
+                {item.categoryName}
               </Link>
             </ListElement>
           );
@@ -62,21 +63,18 @@ export default function DesktopNavigation({
       <div className="grow">
         {activeIndexCategory >= 0 && (
           <List className="flex  w-full gap-6">
-            {categories[activeIndexCategory].childrens.map((item, index) => {
-              const isActive = findInfiniteChildrenIsActive(
-                item as CategoryWitchChildren,
-                path
-              );
+            {categories[activeIndexCategory].categories?.map((item, index) => {
+              const isActive = findInfiniteChildrenIsActive(item, path);
 
               return (
                 <ListElement key={item.id}>
                   <Link
-                    href={getPath("category")(item.slugCategory)}
+                    href={getPath("category")(item.slug)}
                     className={` ${
                       isActive ? "text-primary" : ""
                     } py-9 text-base font-semibold ease-out hover:text-primary whitespace-nowrap shrink-0`}
                   >
-                    {item.name}
+                    {item.categoryName}
                   </Link>
                 </ListElement>
               );

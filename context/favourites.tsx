@@ -8,7 +8,7 @@ import React, {
   useState,
 } from "react";
 import { Favourite } from "../types/favourite";
-import { Product } from "../types/product";
+import { ProductDatoCms, ProductColor, Product } from "../types/product";
 import { LocalStorageManager } from "../utils/localstorage";
 
 interface FavouritesContex {

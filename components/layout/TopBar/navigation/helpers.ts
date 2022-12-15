@@ -1,14 +1,14 @@
-import { CategoryWitchChildren } from "../../../../types/category";
+import { Category } from "../../../../types/category";
 import { getPath } from "../../../../utils/routing";
 
 export const findInfiniteChildrenIsActive = (
-  { slugCategory, childrens }: CategoryWitchChildren,
+  { slug, categories }: Category,
   path: string
 ): boolean => {
   return !!(
-    getPath("category")(slugCategory) === path ||
-    !!childrens.find((el) =>
-      findInfiniteChildrenIsActive(el as CategoryWitchChildren, path)
+    getPath("category")(slug) === path ||
+    !!categories?.find((el) =>
+      findInfiniteChildrenIsActive(el as Category, path)
     )
   );
 };

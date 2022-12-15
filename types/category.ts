@@ -1,10 +1,18 @@
-export interface Category {
+export interface CategoryDatoCms {
   id: number;
   name: string;
   slugCategory: string;
-  parent: Category | null;
+  parent: CategoryDatoCms | null;
 }
 
-export interface CategoryWitchChildren extends Category {
-  childrens: Category[];
+export interface CategoryDatoCmsWitchChildren extends CategoryDatoCms {
+  childrens: CategoryDatoCms[];
+}
+
+export interface Category {
+  id: string;
+  categoryName: string;
+  slug: string;
+  categories?: Category[];
+  isMainCategory: boolean;
 }

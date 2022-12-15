@@ -1,7 +1,7 @@
 import Link from "next/link";
-import React, { HTMLAttributes, useState } from "react";
+import { HTMLAttributes, useState } from "react";
 import { ExpandedIcon } from "../../../../assets/icons";
-import { CategoryWitchChildren } from "../../../../types/category";
+import { Category } from "../../../../types/category";
 import { getPath } from "../../../../utils/routing";
 import Accordion from "../../../atom/accordion/Accordion";
 import TextButton from "../../../atom/button/textButton";
@@ -10,7 +10,7 @@ import ListElement from "../../../atom/list/ListElement";
 import { findInfiniteChildrenIsActive } from "./helpers";
 
 interface Props extends HTMLAttributes<HTMLLIElement> {
-  category: CategoryWitchChildren;
+  category: Category;
   onCloseNavigation: () => void;
   asPath: string;
 }
@@ -21,12 +21,12 @@ export default function MobileNavigationElement({
   asPath,
   ...props
 }: Props) {
-  const isNested = !!category.childrens.length;
+  const isNested = !!category.categories?.length;
   const isActive = findInfiniteChildrenIsActive(category, asPath);
 
   const [isOpen, setIsOpen] = useState(isActive);
 
-  const path = getPath("category")(category.slugCategory);
+  const path = getPath("category")(category.slug);
 
   return (
     <ListElement className="px-0 ml-2" {...props}>
@@ -38,7 +38,7 @@ export default function MobileNavigationElement({
             isActive ? "text-primary" : ""
           } text-lg py-2 grow font-semibold ease-out duration-100 hover:text-primary whitespace-nowrap shrink lg:text-lg`}
         >
-          {category.name}
+          {category.categoryName}
         </Link>
         {isNested && (
           <TextButton onClick={() => setIsOpen((prev) => !prev)}>
@@ -56,11 +56,11 @@ export default function MobileNavigationElement({
               isOpen ? "" : ""
             }`}
           >
-            {category.childrens.map((nestedCategory) => (
+            {category.categories?.map((nestedCategory) => (
               <MobileNavigationElement
                 asPath={asPath}
                 key={nestedCategory.id}
-                category={nestedCategory as CategoryWitchChildren}
+                category={nestedCategory}
                 onCloseNavigation={onCloseNavigation}
               />
             ))}

@@ -1,5 +1,5 @@
 import React, { HTMLAttributes } from "react";
-import { Product } from "../../types/product";
+import { ProductDatoCms, Product } from "../../types/product";
 import { datoCMSImageLoader } from "../../utils/next";
 import ListElement from "../atom/list/ListElement";
 import Image from "next/image";
@@ -23,7 +23,7 @@ export default function HintListItem({ product, className, ...props }: Props) {
           <Image
             loader={datoCMSImageLoader}
             src={photo.url}
-            alt={photo.alt}
+            alt={photo.fileName}
             fill
             className="object-cover"
           />
