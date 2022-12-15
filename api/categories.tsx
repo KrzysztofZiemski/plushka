@@ -60,8 +60,8 @@ export const getCategories = async (): Promise<Category[]> => {
     `,
   });
 
-  const output = result.data.categoriesPluralConnection.edges.map(
-    (el: any) => el.node
-  );
+  const output =
+    result.data.categoriesPluralConnection.edges?.map((el: any) => el.node) ||
+    [];
   return output;
 };

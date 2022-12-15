@@ -1,6 +1,5 @@
-import React, { HTMLAttributes } from "react";
+import { HTMLAttributes } from "react";
 import { LoadingIcon } from "../../../assets/icons";
-import styles from "./loader.module.css";
 
 export default function Loader({
   className,

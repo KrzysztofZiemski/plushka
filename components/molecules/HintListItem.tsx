@@ -1,8 +1,8 @@
-import React, { HTMLAttributes } from "react";
-import { ProductDatoCms, Product } from "../../types/product";
+import Image from "next/image";
+import { HTMLAttributes } from "react";
+import { Product } from "../../types/product";
 import { datoCMSImageLoader } from "../../utils/next";
 import ListElement from "../atom/list/ListElement";
-import Image from "next/image";
 
 interface Props extends HTMLAttributes<HTMLLIElement> {
   product: Product;

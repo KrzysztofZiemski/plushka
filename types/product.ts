@@ -33,10 +33,8 @@ export interface ProductDatoCms {
   colors: ProductColorDatoCms[];
   photos: ProductPhotoDatoCms[];
   categories: CategoryDatoCms[];
-  textDescription: string; //w dato
-  description: string; //w hygraph
-  slugName: string; //w dato
-  slug: string; //w hygraph
+  textDescription: string; 
+  slugName: string; 
 }
 export interface Product {
   id: string;

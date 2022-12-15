@@ -138,8 +138,7 @@ export const getProducts = async (): Promise<Product[]> => {
       }
     `,
   });
-  const output = result.data.productPluralConnection.edges.map(
-    (el: any) => el.node
-  );
+  const output =
+    result.data.productPluralConnection.edges?.map((el: any) => el.node) || [];
   return output;
 };
