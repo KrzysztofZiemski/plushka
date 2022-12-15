@@ -1,23 +1,23 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import logo from "../../../assets/logo.png";
 import { MenuBurgerIcon, SearchIcon } from "../../../assets/icons";
+import logo from "../../../assets/logo.png";
 import useSearchProducts from "../../../hooks/useSearchProducts";
-import { CategoryWitchChildren } from "../../../types/category";
+import { Category } from "../../../types/category";
 import { Product } from "../../../types/product";
 import { datoCMSImageLoader } from "../../../utils/next";
 import TextButton from "../../atom/button/textButton";
 import MainInput from "../../atom/input/MainInput";
 import List from "../../atom/list/List";
+import ListElement from "../../atom/list/ListElement";
 import HintListItem from "../../molecules/HintListItem";
 import MobileNavigation from "./navigation/MobileNavigation";
 import styles from "./topBar.module.css";
-import ListElement from "../../atom/list/ListElement";
 
 interface Props {
   products: Product[];
-  categories: CategoryWitchChildren[];
+  categories: Category[];
   goToProduct: (productName: string) => void;
 }
 export default function MobileTopBar({
@@ -58,7 +58,7 @@ export default function MobileTopBar({
                   <HintListItem
                     product={product}
                     key={product.id}
-                    onClick={() => goToProduct(product.slugName)}
+                    onClick={() => goToProduct(product.slug)}
                   />
                 );
               })}

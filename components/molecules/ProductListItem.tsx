@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { HTMLAttributes, useCallback } from "react";
-import { Product } from "../../types/product";
+import { ProductDatoCms, ProductColor, Product } from "../../types/product";
 import { Amount } from "../../utils/amount";
 import { datoCMSImageLoader } from "../../utils/next";
 import { getPath } from "../../utils/routing";
@@ -20,10 +20,10 @@ export default function ProductListItem({
   ...props
 }: Props) {
   const router = useRouter();
-  const { photos, name, shortDescription, price, colors, id, slugName } = item;
+  const { colors, name, slug, photos, id, shortDescription, price } = item;
 
   const goToProductDeatail = () => {
-    router.push(getPath("product-detail")(slugName));
+    router.push(getPath("product-detail")(slug));
   };
 
   const mainPhoto = photos[0];
@@ -46,9 +46,9 @@ export default function ProductListItem({
         {mainPhoto && (
           <Image
             loader={datoCMSImageLoader}
-            key={mainPhoto.id}
+            key={mainPhoto.fileName}
             src={mainPhoto.url}
-            alt={mainPhoto.alt}
+            alt={mainPhoto.fileName}
             fill
             loading="lazy"
             className="object-cover w-full cursor-pointer"

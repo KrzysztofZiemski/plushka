@@ -6,7 +6,7 @@ import {
   InstagramIcon,
   TwitterIcon,
 } from "../../../assets/icons";
-import { Category } from "../../../types/category";
+import { CategoryDatoCms, Category } from "../../../types/category";
 import { getPath } from "../../../utils/routing";
 import TextButton from "../../atom/button/textButton";
 import List from "../../atom/list/List";
@@ -23,9 +23,9 @@ export default function Footer({ categories }: Props) {
         <List>
           {categories
             // .filter(({ parent }) => !parent)
-            .map(({ id, slugCategory, name }) => (
+            .map(({ id, slug, categoryName }) => (
               <ListElement key={id}>
-                <Link href={getPath("category")(slugCategory)}>{name}</Link>
+                <Link href={getPath("category")(slug)}>{categoryName}</Link>
               </ListElement>
             ))}
           <ListElement>

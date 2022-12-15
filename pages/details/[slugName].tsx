@@ -3,7 +3,7 @@ import Head from "next/head";
 import Image from "next/image";
 import { useCallback, useState } from "react";
 import { getCategories } from "../../api/categories";
-import { getProduct, getProducts } from "../../api/products";
+import { getProducts } from "../../api/products";
 import BottomProduct from "../../components/atom/bottomProduct/BottomProduct";
 import List from "../../components/atom/list/List";
 import DetailsProductLayout from "../../components/layout/DetailsProductLayout";
@@ -23,7 +23,7 @@ interface Props {
 }
 
 export default function ProductDetailPage({ product }: Props) {
-  const { name, shortDescription, textDescription, price, photos, colors, id } =
+  const { name, shortDescription, description, price, photos, colors, id } =
     product;
 
   const [selected, setSelected] = useState(0);
@@ -36,7 +36,6 @@ export default function ProductDetailPage({ product }: Props) {
   );
 
   const selectedPhoto = photos[selected];
-  const description = shortDescription;
 
   return (
     <>
@@ -45,10 +44,10 @@ export default function ProductDetailPage({ product }: Props) {
         <meta name="description" content={shortDescription} />
         <title>{`Plushka - ${name || ""}`}</title>
 
-        <meta name="description" content={description} />
+        <meta name="description" content={shortDescription} />
         <meta property="og:title" content="Plushka" />
         <meta property="og:image" content={selectedPhoto.url} />
-        <meta property="og:description" content={description} />
+        <meta property="og:description" content={shortDescription} />
       </Head>
       <div className="mb-2">
         <div className="p-2 border-2">
@@ -57,7 +56,7 @@ export default function ProductDetailPage({ product }: Props) {
               onClick={() => setFullImageOpen(true)}
               loader={datoCMSImageLoader}
               src={selectedPhoto.url}
-              alt={selectedPhoto.alt}
+              alt={selectedPhoto.fileName}
               loading="lazy"
               fill
               className="object-contain cursor-pointer"
@@ -65,7 +64,7 @@ export default function ProductDetailPage({ product }: Props) {
           </div>
         </div>
         <List className="flex flex-wrap gap-2 p-2 justify-center">
-          {photos?.map(({ id, alt, url }, index) => (
+          {photos?.map(({ fileName, url }, index) => (
             <li
               className={`relative w-16 h-16 cursor-poiner border-2 ${
                 index === selected ? "border-primary" : ""
@@ -78,7 +77,7 @@ export default function ProductDetailPage({ product }: Props) {
                 className="object-cover"
                 fill
                 src={url}
-                alt={alt}
+                alt={fileName}
                 loader={datoCMSImageLoader}
               />
             </li>
@@ -92,7 +91,7 @@ export default function ProductDetailPage({ product }: Props) {
             {new Amount(price, "PLN").price}
           </p>
         </div>
-        <Markdown text={textDescription} className="mb-4" />
+        <Markdown text={description.markdown} className="mb-4" />
       </div>
       <BottomProduct
         colors={colors}
@@ -103,7 +102,7 @@ export default function ProductDetailPage({ product }: Props) {
       {fullImageOpen && (
         <FullScreenImage
           src={selectedPhoto.url}
-          alt={selectedPhoto.alt}
+          alt={selectedPhoto.fileName}
           onClose={() => setFullImageOpen(false)}
         />
       )}
@@ -115,7 +114,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const products = await getProducts();
 
   const paths = products.map((el) => ({
-    params: { slugName: el.slugName },
+    params: { slugName: el.slug },
   }));
 
   return {
@@ -131,11 +130,15 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       notFound: true,
     };
 
-  const product = await getProduct(params.slugName as string);
   const products = await getProducts();
   const categories = await getCategories();
+
   return {
-    props: { product, categories, products },
+    props: {
+      categories,
+      products,
+      product: products.find(({ slug }) => params?.slugName === slug),
+    },
   };
 };
 

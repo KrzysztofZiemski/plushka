@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { ReactNode, useState } from "react";
-import { Category } from "../../types/category";
-import { Product } from "../../types/product";
+import { CategoryDatoCms, Category } from "../../types/category";
+import { ProductDatoCms, Product } from "../../types/product";
 import Loader from "../atom/loader/Loader";
 import Footer from "./footer/Footer";
 import TopBar from "./TopBar/TopBar";

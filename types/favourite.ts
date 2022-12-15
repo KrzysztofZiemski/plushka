@@ -1,4 +1,4 @@
-import { Product } from "./product";
+import { ProductDatoCms } from "./product";
 
 export interface Favourite {
   idProduct: string;

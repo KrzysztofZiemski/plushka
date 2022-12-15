@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { useCallback, useMemo } from "react";
-import { Category } from "../../../types/category";
-import { Product } from "../../../types/product";
+import { CategoryDatoCms, Category } from "../../../types/category";
+import { ProductDatoCms, Product } from "../../../types/product";
 import { getTreeCategories } from "../../../utils/category";
 import { getPath } from "../../../utils/routing";
 import DesktopTopBar from "./DesktopTopBar";
@@ -13,10 +13,6 @@ interface Props {
 }
 export default function TopBar({ products, categories }: Props) {
   const router = useRouter();
-  const treeCategories = useMemo(
-    () => getTreeCategories(categories),
-    [categories]
-  );
 
   const goToProduct = useCallback(
     (productName: string) => {
@@ -29,12 +25,12 @@ export default function TopBar({ products, categories }: Props) {
     <>
       <MobileTopBar
         products={products}
-        categories={treeCategories}
+        categories={categories}
         goToProduct={goToProduct}
       />
       <DesktopTopBar
         products={products}
-        categories={treeCategories}
+        categories={categories}
         goToProduct={goToProduct}
       />
     </>

@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import logo from "../../../../assets/logo.png";
 import { useFavourites } from "../../../../context/favourites";
 import useStopScrolling from "../../../../hooks/useStopScrolling";
-import { CategoryWitchChildren } from "../../../../types/category";
+import { Category } from "../../../../types/category";
 import { datoCMSImageLoader } from "../../../../utils/next";
 import { getPath } from "../../../../utils/routing";
 import CloseButton from "../../../atom/button/closeButton";
@@ -15,7 +15,7 @@ import MobileNavigationElement from "./MobileNavigationElement";
 interface Props {
   isOpen: boolean;
   onClose: () => void;
-  categories: CategoryWitchChildren[];
+  categories: Category[];
 }
 export default function MobileNavigation({
   isOpen,

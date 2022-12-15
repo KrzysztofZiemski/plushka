@@ -2,7 +2,7 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { useMemo } from "react";
-import { getCategories } from "../api/categories";
+import { getCategories, getCategories } from "../api/categories";
 import { getProducts } from "../api/products";
 import PageTitle from "../components/atom/pageTitle/pageTitle";
 import MainLayout from "../components/layout/MainLayout";
@@ -10,7 +10,7 @@ import ProductListItem from "../components/molecules/ProductListItem";
 import { useFavourites } from "../context/favourites";
 import { Category } from "../types/category";
 import { GetLayout } from "../types/page";
-import { Product } from "../types/product";
+import { ProductDatoCms, Product } from "../types/product";
 import logo from "../assets/logo.png";
 
 interface Props {
@@ -24,9 +24,7 @@ export default function CategoryPage({ products, categories }: Props) {
   const { favourites, toggle } = useFavourites();
 
   const pageCategory = useMemo(() => {
-    return categories.find(
-      (category) => category.slugCategory === slugCategory
-    );
+    return categories.find((category) => category.slug === slugCategory);
   }, [categories, slugCategory]);
 
   const categoryProducts = useMemo(() => {
@@ -34,24 +32,25 @@ export default function CategoryPage({ products, categories }: Props) {
 
     return products.filter(
       (product) =>
-        !!product.categories.find(
-          (category) => category.slugCategory === slugCategory
-        )
+        !!product.categories?.find((category) => category.slug === slugCategory)
     );
   }, [products, slugCategory]);
 
-  const description = `${pageCategory?.name} | Rękodzieło z pasją. Przytulanki, zabawki, biżuteria.`;
+  const description = `${pageCategory?.categoryName} | Rękodzieło z pasją. Przytulanki, zabawki, biżuteria.`;
 
   return (
     <>
       <Head>
-        <title>{`Plushka - ${pageCategory?.name || ""}`}</title>
+        <title>{`Plushka - ${pageCategory?.categoryName || ""}`}</title>
         <meta name="description" content={description} />
-        <meta property="og:title" content={`Plushka - ${pageCategory?.name}`} />
+        <meta
+          property="og:title"
+          content={`Plushka - ${pageCategory?.categoryName}`}
+        />
         <meta property="og:image" content={logo.src} />
         <meta property="og:description" content={description} />
       </Head>
-      <PageTitle>{pageCategory?.name}</PageTitle>
+      <PageTitle>{pageCategory?.categoryName}</PageTitle>
 
       <div
         className={`grid grid-cols-1 md:grid-cols-2 gap-5 lg:grid-cols-3 ${
@@ -78,9 +77,11 @@ export default function CategoryPage({ products, categories }: Props) {
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const categories = await getCategories();
-  const paths = categories.map(({ slugCategory }) => ({
-    params: { slugCategory },
-  }));
+  const paths = categories.map(({ slug }) => {
+    return {
+      params: { slugCategory: slug },
+    };
+  });
 
   return {
     paths,
@@ -89,7 +90,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const products = await getProducts();
+  const products = await getCategories();
   const categories = await getCategories();
   return {
     props: { products: products || [], categories },

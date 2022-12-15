@@ -1,23 +1,23 @@
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/router";
+import { useCallback } from "react";
 import { SearchIcon } from "../../../assets/icons";
 import logo from "../../../assets/logo.png";
 import useSearchProducts from "../../../hooks/useSearchProducts";
-import { CategoryWitchChildren } from "../../../types/category";
+import { Category } from "../../../types/category";
 import { Product } from "../../../types/product";
+import { getPath } from "../../../utils/routing";
 import MainInput from "../../atom/input/MainInput";
 import List from "../../atom/list/List";
-import HintListItem from "../../molecules/HintListItem";
-import styles from "./topBar.module.css";
-import DesktopNavigation from "./navigation/DesktopNavigation";
-import { getPath } from "../../../utils/routing";
-import { useCallback } from "react";
-import Link from "next/link";
 import ListElement from "../../atom/list/ListElement";
+import HintListItem from "../../molecules/HintListItem";
+import DesktopNavigation from "./navigation/DesktopNavigation";
+import styles from "./topBar.module.css";
 
 interface Props {
   products: Product[];
-  categories: CategoryWitchChildren[];
+  categories: Category[];
   goToProduct: (productName: string) => void;
 }
 
@@ -64,7 +64,7 @@ export default function DesktopTopBar({
                 <HintListItem
                   product={product}
                   key={product.id}
-                  onClick={() => goToProduct(product.slugName)}
+                  onClick={() => goToProduct(product.slug)}
                 />
               );
             })}

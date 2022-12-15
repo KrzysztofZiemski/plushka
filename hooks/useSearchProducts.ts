@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import { useSearch } from "../context/search";
-import { Product } from "../types/product";
+import { ProductDatoCms, Product } from "../types/product";
 import { productFilter } from "../utils/filter";
 
 export default function useSearchProducts(products: Product[]) {

@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
-import { ReactNode, useState } from "react";
-import { Category } from "../../types/category";
-import { Product } from "../../types/product";
+import { ReactNode, useMemo, useState } from "react";
+import { CategoryDatoCms, Category } from "../../types/category";
+import { ProductDatoCms, Product } from "../../types/product";
 import Loader from "../atom/loader/Loader";
 import Footer from "./footer/Footer";
 import TopBar from "./TopBar/TopBar";
@@ -16,6 +16,10 @@ export default function MainLayout({ products, children, categories }: Props) {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
 
+  const rootCategories = useMemo(
+    () => categories.filter(({ isMainCategory }) => isMainCategory),
+    [categories]
+  );
   router.events?.on("routeChangeStart", () => {
     setIsLoading(true);
   });
@@ -27,7 +31,7 @@ export default function MainLayout({ products, children, categories }: Props) {
   });
   return (
     <div className="min-h-screen flex flex-col">
-      <TopBar products={products || []} categories={categories} />
+      <TopBar products={products || []} categories={rootCategories} />
       <main className="w-full max-w-6xl grow md:mx-4 xl:mx-auto mb-10">
         {isLoading ? <Loader className="mx-auto" /> : children}
       </main>

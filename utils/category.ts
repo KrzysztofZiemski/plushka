@@ -1,9 +1,12 @@
-import { Category, CategoryWitchChildren } from "../types/category";
+import {
+  CategoryDatoCms,
+  CategoryDatoCmsWitchChildren,
+} from "../types/category";
 
 const getChildrens = (
-  rootCategory: Category,
-  categories: Category[]
-): CategoryWitchChildren => {
+  rootCategory: CategoryDatoCms,
+  categories: CategoryDatoCms[]
+): CategoryDatoCmsWitchChildren => {
   const filteredList = categories.filter(
     (el) =>
       el.parent && el.id !== rootCategory.id && el.parent.id === rootCategory.id
@@ -15,7 +18,7 @@ const getChildrens = (
   };
 };
 
-export const getTreeCategories = (categories: Category[]) => {
+export const getTreeCategories = (categories: CategoryDatoCms[]) => {
   const rootCategories = categories.filter(({ parent }) => parent === null);
   const childrensCategories = categories.filter(
     ({ parent }) => parent !== null
