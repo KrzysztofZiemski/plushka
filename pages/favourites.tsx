@@ -1,7 +1,7 @@
 import { GetStaticProps } from "next";
 import Head from "next/head";
 import { useMemo } from "react";
-import { getCategories, getCategories } from "../api/categories";
+import { getCategories } from "../api/categories";
 import { getProducts } from "../api/products";
 import logo from "../assets/logo.png";
 import PageTitle from "../components/atom/pageTitle/pageTitle";

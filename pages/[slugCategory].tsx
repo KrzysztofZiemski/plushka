@@ -2,16 +2,15 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { useMemo } from "react";
-import { getCategories, getCategories } from "../api/categories";
-import { getProducts } from "../api/products";
+import { getCategories } from "../api/categories";
+import logo from "../assets/logo.png";
 import PageTitle from "../components/atom/pageTitle/pageTitle";
 import MainLayout from "../components/layout/MainLayout";
 import ProductListItem from "../components/molecules/ProductListItem";
 import { useFavourites } from "../context/favourites";
 import { Category } from "../types/category";
 import { GetLayout } from "../types/page";
-import { ProductDatoCms, Product } from "../types/product";
-import logo from "../assets/logo.png";
+import { Product } from "../types/product";
 
 interface Props {
   products: Product[];
