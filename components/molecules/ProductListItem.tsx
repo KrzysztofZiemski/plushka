@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { HTMLAttributes, useCallback } from "react";
-import { ProductDatoCms, ProductColor, Product } from "../../types/product";
+import { Product } from "../../types/product";
 import { Amount } from "../../utils/amount";
 import { datoCMSImageLoader } from "../../utils/next";
 import { getPath } from "../../utils/routing";
@@ -26,8 +26,6 @@ export default function ProductListItem({
     router.push(getPath("product-detail")(slug));
   };
 
-  const mainPhoto = photos[0];
-
   const handleToggleFavourite = useCallback(
     () => toggleFavourite(item),
     [item, toggleFavourite]
@@ -43,12 +41,12 @@ export default function ProductListItem({
         className="h-96 w-auto w-full relative overflow-hidden cursor-poinet"
         onClick={goToProductDeatail}
       >
-        {mainPhoto && (
+        {!!photos?.length && (
           <Image
             loader={datoCMSImageLoader}
-            key={mainPhoto.fileName}
-            src={mainPhoto.url}
-            alt={mainPhoto.fileName}
+            key={photos[0].fileName}
+            src={photos[0].url}
+            alt={photos[0].fileName}
             fill
             loading="lazy"
             className="object-cover w-full cursor-pointer"

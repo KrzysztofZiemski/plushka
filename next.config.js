@@ -26,6 +26,11 @@ const nextConfig = {
         hostname: "images.unsplash.com",
         port: "8080",
       },
+      {
+        protocol: "https",
+        hostname: "media.graphassets.com",
+        port: "8080",
+      },
     ],
     // domains: [
     //     'datocms-assets.com',
