@@ -1,5 +1,7 @@
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/router";
+import path from "path";
 import { useEffect } from "react";
 import logo from "../../../../assets/logo.png";
 import { useFavourites } from "../../../../context/favourites";
@@ -10,6 +12,7 @@ import { getPath } from "../../../../utils/routing";
 import CloseButton from "../../../atom/button/closeButton";
 import FavouriteButton from "../../../atom/favouriteButton/FavouriteButton";
 import List from "../../../atom/list/List";
+import ListElement from "../../../atom/list/ListElement";
 import MobileNavigationElement from "./MobileNavigationElement";
 
 interface Props {
@@ -72,6 +75,17 @@ export default function MobileNavigation({
             key={category.id}
           />
         ))}
+        <ListElement className="ml-2 border-b px-5">
+          <Link
+            onClick={onClose}
+            href={getPath("contact")("")}
+            className={`${
+              router.asPath === getPath("contact")("") ? "text-primary" : ""
+            } text-lg py-2 grow font-semibold ease-out duration-100 hover:text-primary whitespace-nowrap shrink lg:text-lg`}
+          >
+            Kontakt
+          </Link>
+        </ListElement>
       </List>
     </div>
   );

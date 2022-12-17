@@ -50,6 +50,19 @@ export default function DesktopNavigation({
             </ListElement>
           );
         })}
+        <ListElement
+          // style={{ marginRight: "5%", marginLeft: "5%" }}
+          className="flex items-end mx-5"
+        >
+          <Link
+            href={getPath("contact")("")}
+            className={` ${
+              path === getPath("contact")("") ? "text-primary" : ""
+            } font-semibold ease-out hover:text-primary whitespace-nowrap shrink text-lg  px-5 mb-2`}
+          >
+            Kontakt
+          </Link>
+        </ListElement>
         <ListElement className="ml-auto">
           <FavouriteButton
             onClick={goToFavourites}
