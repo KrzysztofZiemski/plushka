@@ -7,9 +7,9 @@ import PageTitle from "../components/atom/pageTitle/pageTitle";
 import MainLayout from "../components/layout/MainLayout";
 import ProductListItem from "../components/molecules/ProductListItem";
 import { useFavourites } from "../context/favourites";
-import { CategoryDatoCms, Category } from "../types/category";
+import { Category } from "../types/category";
 import { GetLayout } from "../types/page";
-import { ProductDatoCms, ProductColor, Product } from "../types/product";
+import { Product } from "../types/product";
 
 interface Props {
   products: Product[];
