@@ -2,11 +2,14 @@ import { useEffect, useRef } from "react";
 import styles from "./styles.module.css";
 
 import { ButtonHTMLAttributes } from "react";
+import Loader from "../loader/Loader";
+import { LoadingIcon } from "../../../assets/icons";
 
 export interface MainButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement> {
   focus?: boolean;
   ripple?: boolean;
+  isLoading?: boolean;
   size?: "small" | "normal";
 }
 
@@ -17,6 +20,7 @@ const MainButton = ({
   focus,
   ripple = true,
   size = "normal",
+  isLoading = false,
   ...props
 }: MainButtonProps) => {
   const ref = useRef<null | HTMLButtonElement>(null);
@@ -42,7 +46,7 @@ const MainButton = ({
 
     button.appendChild(circle);
 
-    onClick && onClick(event);
+    onClick && !isLoading && onClick(event);
   };
 
   useEffect(() => {
@@ -52,14 +56,20 @@ const MainButton = ({
 
   return (
     <button
-      className={`bg-primary flex items-center justify-center text-base text-white ${
+      className={`bg-primary flex items-center justify-center text-base text-white outline-0 ${
         styles.mainButton
-      } ${size === "small" ? `h-8 p-0!` : ""} ${className}`}
+      } ${size === "small" ? `h-8 p-0!` : "h-10"} ${className}`}
       onClick={ripple ? createRipple : onClick}
       ref={ref}
       {...props}
     >
-      {children}
+      {isLoading ? (
+        <LoadingIcon
+          className={size === "small" ? styles.smallLoader : styles.loader}
+        />
+      ) : (
+        children
+      )}
     </button>
   );
 };

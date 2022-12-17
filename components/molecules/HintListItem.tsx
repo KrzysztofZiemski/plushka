@@ -1,8 +1,8 @@
-import React, { HTMLAttributes } from "react";
+import Image from "next/image";
+import { HTMLAttributes } from "react";
 import { Product } from "../../types/product";
 import { datoCMSImageLoader } from "../../utils/next";
 import ListElement from "../atom/list/ListElement";
-import Image from "next/image";
 
 interface Props extends HTMLAttributes<HTMLLIElement> {
   product: Product;
@@ -23,7 +23,7 @@ export default function HintListItem({ product, className, ...props }: Props) {
           <Image
             loader={datoCMSImageLoader}
             src={photo.url}
-            alt={photo.alt}
+            alt={photo.fileName}
             fill
             className="object-cover"
           />

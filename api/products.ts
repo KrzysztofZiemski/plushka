@@ -1,9 +1,9 @@
 import axios from "axios";
-import client from "../config/apollo";
+import client, { clientHyGraph } from "../config/apollo";
 import { gql } from "@apollo/client";
-import { Product } from "../types/product";
+import { ProductDatoCms, Product } from "../types/product";
 
-export const getProducts = async (): Promise<Product[]> => {
+export const getProductsDatoCms = async (): Promise<ProductDatoCms[]> => {
   const result = await client.query({
     query: gql`
       query getProducts {
@@ -46,7 +46,9 @@ export const getProducts = async (): Promise<Product[]> => {
 
   return result.data.allProducts;
 };
-export const getProduct = async (slugName: string): Promise<Product> => {
+export const getProductDatoCms = async (
+  slugName: string
+): Promise<ProductDatoCms> => {
   const result = await client.query({
     query: gql`
       query getProduct {
@@ -90,4 +92,53 @@ export const getProduct = async (slugName: string): Promise<Product> => {
     `,
   });
   return result.data.product;
+};
+
+export const getProducts = async (): Promise<Product[]> => {
+  const result = await clientHyGraph.query({
+    query: gql`
+      {
+        productPluralConnection {
+          edges {
+            node {
+              id
+              slug
+              name
+              price
+              description {
+                markdown
+              }
+              shortDescription
+              categories {
+                id
+                categoryName
+                slug
+                categories {
+                  id
+                  categoryName
+                  slug
+                }
+              }
+              colors {
+                name
+                color {
+                  hex
+                }
+              }
+              photos {
+                url
+                width
+                size
+                height
+                fileName
+              }
+            }
+          }
+        }
+      }
+    `,
+  });
+  const output =
+    result.data.productPluralConnection.edges?.map((el: any) => el.node) || [];
+  return output;
 };

@@ -8,16 +8,16 @@ import PageTitle from "../components/atom/pageTitle/pageTitle";
 import MainLayout from "../components/layout/MainLayout";
 import ProductListItem from "../components/molecules/ProductListItem";
 import { useFavourites } from "../context/favourites";
-import { Category } from "../types/category";
+import { CategoryDatoCms, Category } from "../types/category";
 import { GetLayout } from "../types/page";
-import { Product } from "../types/product";
+import { ProductDatoCms, Product } from "../types/product";
 
 interface Props {
   products: Product[];
   categories: Category[];
 }
 
-export default function FavouritesPage({ products, categories }: Props) {
+export default function FavouritesPage({ products }: Props) {
   const { favourites, toggle } = useFavourites();
 
   const favouriteProducts = useMemo(() => {

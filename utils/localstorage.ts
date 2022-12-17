@@ -2,7 +2,7 @@ export class LocalStorageManager<Type> {
   private name = "";
   private validator: (v: Type) => boolean = ({}) => true;
 
-  constructor(name: string, validator?: (v: Type) => boolean) {
+  constructor(name: string, validator?: (v: Type | unknown) => boolean) {
     this.name = name;
     if (validator) this.validator = validator;
   }

@@ -16,7 +16,7 @@ interface Props {
   categories: Category[];
 }
 
-export default function HomePage({ products, categories }: Props) {
+export default function HomePage({ products }: Props) {
   const { favourites, toggle } = useFavourites();
 
   const description =

@@ -1,9 +1,9 @@
-import React, { HTMLAttributes } from "react";
+import { HTMLAttributes } from "react";
 import { ProductColor } from "../../../types/product";
 import FavouriteButton from "../favouriteButton/FavouriteButton";
 
 interface Props extends HTMLAttributes<HTMLDivElement> {
-  colors: ProductColor[];
+  colors?: ProductColor[];
   toggleFavourite: () => void;
   isFavourite: boolean;
 }
@@ -27,12 +27,12 @@ export default function BottomProduct({
         aria-label={isFavourite ? "usuń z ulubionych" : "dodaj do ulubionych"}
       />
       <div className="flex gap-3">
-        {colors.map(({ colorName, colorValue }) => {
+        {colors?.map(({ color, name }) => {
           return (
             <div
               className="w-2.5 h-2.5"
-              style={{ backgroundColor: colorValue.hex }}
-              key={colorName}
+              style={{ backgroundColor: color.hex }}
+              key={name}
             />
           );
         })}

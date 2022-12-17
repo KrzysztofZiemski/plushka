@@ -1,6 +1,5 @@
-import React, {
+import {
   createContext,
-  Dispatch,
   ReactNode,
   useCallback,
   useContext,
@@ -17,7 +16,7 @@ interface FavouritesContex {
   add: (i: Product) => void;
   toggle: (i: Product) => void;
 }
-const validator = (data: Favourite[]) => {
+const validator = (data: Favourite[] | unknown) => {
   if (!data || !Array.isArray(data)) return false;
   for (let i = 0; i < data.length; i++) {
     const item = data[i];

@@ -20,13 +20,11 @@ export default function ProductListItem({
   ...props
 }: Props) {
   const router = useRouter();
-  const { photos, name, shortDescription, price, colors, id, slugName } = item;
+  const { colors, name, slug, photos, id, shortDescription, price } = item;
 
   const goToProductDeatail = () => {
-    router.push(getPath("product-detail")(slugName));
+    router.push(getPath("product-detail")(slug));
   };
-
-  const mainPhoto = photos[0];
 
   const handleToggleFavourite = useCallback(
     () => toggleFavourite(item),
@@ -43,12 +41,12 @@ export default function ProductListItem({
         className="h-96 w-auto w-full relative overflow-hidden cursor-poinet"
         onClick={goToProductDeatail}
       >
-        {mainPhoto && (
+        {!!photos?.length && (
           <Image
             loader={datoCMSImageLoader}
-            key={mainPhoto.id}
-            src={mainPhoto.url}
-            alt={mainPhoto.alt}
+            key={photos[0].fileName}
+            src={photos[0].url}
+            alt={photos[0].fileName}
             fill
             loading="lazy"
             className="object-cover w-full cursor-pointer"
