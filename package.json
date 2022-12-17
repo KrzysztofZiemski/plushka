@@ -10,7 +10,9 @@
   },
   "dependencies": {
     "@apollo/client": "^3.7.1",
+    "@hookform/resolvers": "^2.9.10",
     "@notionhq/client": "^2.2.2",
+    "@sendgrid/mail": "^7.7.0",
     "@types/node": "18.11.9",
     "@types/react": "18.0.25",
     "@types/react-dom": "18.0.8",
@@ -24,11 +26,15 @@
     "react": "18.2.0",
     "react-accessible-accordion": "^5.0.0",
     "react-dom": "18.2.0",
+    "react-google-recaptcha-v3": "^1.10.1",
+    "react-hook-form": "^7.40.0",
     "react-markdown": "^8.0.4",
+    "react-toastify": "^9.1.1",
     "remark-gfm": "^3.0.1",
     "sass": "^1.56.1",
     "slugify": "^1.6.5",
-    "typescript": "4.8.4"
+    "typescript": "4.8.4",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@svgr/webpack": "^6.5.1",
