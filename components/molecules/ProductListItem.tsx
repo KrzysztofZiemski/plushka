@@ -26,6 +26,9 @@ export default function ProductListItem({
   const goToProductDeatail = () => {
     router.push(getPath("product-detail")(slug));
   };
+  const goToAsk = () => {
+    router.push(getPath("contact")(id));
+  };
 
   const handleToggleFavourite = useCallback(
     () => toggleFavourite(item),
@@ -64,7 +67,9 @@ export default function ProductListItem({
         <p className="mb-9 max-h-60 overflow-auto">{shortDescription}</p>
         <div className="w-full flex justify-between font-medium text-lg mt-auto">
           <span>{new Amount(price, "PLN").price}</span>
-          <MainButton size="small">Zapytaj</MainButton>
+          <MainButton size="small" onClick={goToAsk}>
+            Zapytaj
+          </MainButton>
         </div>
         <BottomProduct
           toggleFavourite={handleToggleFavourite}

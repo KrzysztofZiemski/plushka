@@ -41,6 +41,9 @@
   fill: var(--color-white);
 }
 
+.hoverWhite:hover path{
+  stroke:var(--color-white)
+}
 @keyframes ripple {
   to {
     transform: scale(4);

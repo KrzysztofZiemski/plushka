@@ -27,7 +27,9 @@ async function sendEmail(req: NextApiRequest, res: NextApiResponse) {
     await sendgrid.send({
       to: "k.b.ziemski@gmail.com", // Your email where you'll receive emails
       from: "k.b.ziemski@gmail.com", // your website email address here
-      subject: `[Wiadomość z Plushka.pl] : ${req.body.title}`,
+      subject: `[Wiadomość z Plushka.pl] : ${req.body.title}${
+        req.body?.id ? ` - ${req.body.id}` : ""
+      }`,
       html: createMailBody({ ...req.body }),
     });
 
