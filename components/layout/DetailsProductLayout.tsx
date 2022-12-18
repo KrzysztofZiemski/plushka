@@ -31,7 +31,7 @@ export default function DetailsProductLayout({
   return (
     <div className="min-h-screen pb-3 flex flex-col">
       <TopBar categories={categories} products={products} />
-      <main className="flex flex-col max-w-6xl grow md:mx-4 xl:mx-auto">
+      <main className="w-full max-w-6xl grow md:px-4 xl:mx-auto mb-10">
         {isLoading ? <Loader className="mx-auto" /> : children}
       </main>
       <Footer categories={categories} />

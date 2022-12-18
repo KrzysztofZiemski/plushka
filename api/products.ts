@@ -98,47 +98,31 @@ export const getProducts = async (): Promise<Product[]> => {
   const result = await clientHyGraph.query({
     query: gql`
       {
-        productPluralConnection {
-          edges {
-            node {
-              id
-              slug
-              name
-              price
-              description {
-                markdown
-              }
-              shortDescription
-              categories {
-                id
-                categoryName
-                slug
-                categories {
-                  id
-                  categoryName
-                  slug
-                }
-              }
-              colors {
-                name
-                color {
-                  hex
-                }
-              }
-              photos {
-                url
-                width
-                size
-                height
-                fileName
-              }
+        products {
+          name
+          price
+          slug
+          photos {
+            height
+            fileName
+            url
+            width
+            size
+          }
+          shortDescription
+          id
+          description
+          colors {
+            name
+            id
+            color {
+              hex
             }
           }
         }
       }
     `,
   });
-  const output =
-    result.data.productPluralConnection.edges?.map((el: any) => el.node) || [];
+  const output = result.data.products || [];
   return output;
 };

@@ -33,15 +33,13 @@ export interface ProductDatoCms {
   colors: ProductColorDatoCms[];
   photos: ProductPhotoDatoCms[];
   categories: CategoryDatoCms[];
-  textDescription: string; 
-  slugName: string; 
+  textDescription: string;
+  slugName: string;
 }
 export interface Product {
   id: string;
   name: string;
-  description: {
-    markdown: string;
-  };
+  description: string;
   price: number;
   slug: string;
   categories?: Category[];

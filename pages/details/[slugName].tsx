@@ -91,7 +91,7 @@ export default function ProductDetailPage({ product }: Props) {
             {new Amount(price, "PLN").price}
           </p>
         </div>
-        <Markdown text={description.markdown} className="mb-4" />
+        <Markdown text={description} className="mb-4" />
       </div>
       <BottomProduct
         colors={colors}
