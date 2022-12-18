@@ -7,7 +7,7 @@ import logo from "../../../../assets/logo.png";
 import { useFavourites } from "../../../../context/favourites";
 import useStopScrolling from "../../../../hooks/useStopScrolling";
 import { Category } from "../../../../types/category";
-import { datoCMSImageLoader } from "../../../../utils/next";
+import { hygraphLoader } from "../../../../utils/next";
 import { getPath } from "../../../../utils/routing";
 import CloseButton from "../../../atom/button/closeButton";
 import FavouriteButton from "../../../atom/favouriteButton/FavouriteButton";
@@ -48,7 +48,7 @@ export default function MobileNavigation({
         <Image
           src={logo}
           alt="logo Plushka"
-          loader={datoCMSImageLoader}
+          loader={hygraphLoader}
           className="h-14 w-auto "
         />
         <CloseButton

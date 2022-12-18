@@ -6,7 +6,7 @@ import logo from "../../../assets/logo.png";
 import useSearchProducts from "../../../hooks/useSearchProducts";
 import { Category } from "../../../types/category";
 import { Product } from "../../../types/product";
-import { datoCMSImageLoader } from "../../../utils/next";
+import { hygraphLoader } from "../../../utils/next";
 import TextButton from "../../atom/button/textButton";
 import MainInput from "../../atom/input/MainInput";
 import List from "../../atom/list/List";
@@ -38,7 +38,7 @@ export default function MobileTopBar({
         <Image
           src={logo}
           alt="logo Plushka"
-          loader={datoCMSImageLoader}
+          loader={hygraphLoader}
           className="h-14 w-auto"
         />
       </Link>

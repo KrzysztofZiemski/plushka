@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { HTMLAttributes, useCallback } from "react";
 import { Product } from "../../types/product";
 import { Amount } from "../../utils/amount";
-import { datoCMSImageLoader } from "../../utils/next";
+import { hygraphLoader } from "../../utils/next";
 import { getPath } from "../../utils/routing";
 import BottomProduct from "../atom/bottomProduct/BottomProduct";
 
@@ -43,7 +43,7 @@ export default function ProductListItem({
       >
         {!!photos?.length && (
           <Image
-            loader={datoCMSImageLoader}
+            loader={hygraphLoader}
             key={photos[0].fileName}
             src={photos[0].url}
             alt={photos[0].fileName}

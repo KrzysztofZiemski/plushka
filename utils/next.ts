@@ -1,5 +1,8 @@
-export const datoCMSImageLoader = ({ src, width, quality }: any) => {
-  return `${src}?w=${width}&q=${quality || 75}`;
+export const hygraphLoader = ({ src, width }: any) => {
+  const relativeSrc = (src: any) => src.split("/").pop();
+  return `https://media.graphassets.com/resize=width:${width}/${relativeSrc(
+    src
+  )}`;
 };
 
 export const isClient = () => typeof window !== "undefined";

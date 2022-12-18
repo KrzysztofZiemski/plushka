@@ -14,7 +14,7 @@ import { Category } from "../../types/category";
 import { GetLayout } from "../../types/page";
 import { Product } from "../../types/product";
 import { Amount } from "../../utils/amount";
-import { datoCMSImageLoader } from "../../utils/next";
+import { hygraphLoader } from "../../utils/next";
 
 interface Props {
   product: Product;
@@ -54,7 +54,7 @@ export default function ProductDetailPage({ product }: Props) {
           <div className="relative w-full h-96 md:half-screen-height">
             <Image
               onClick={() => setFullImageOpen(true)}
-              loader={datoCMSImageLoader}
+              loader={hygraphLoader}
               src={selectedPhoto.url}
               alt={selectedPhoto.fileName}
               loading="lazy"
@@ -78,7 +78,7 @@ export default function ProductDetailPage({ product }: Props) {
                 fill
                 src={url}
                 alt={fileName}
-                loader={datoCMSImageLoader}
+                loader={hygraphLoader}
               />
             </li>
           ))}

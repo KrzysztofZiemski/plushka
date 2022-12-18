@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { datoCMSImageLoader } from "../../utils/next";
+import { hygraphLoader } from "../../utils/next";
 import CloseButton from "../atom/button/closeButton";
 interface Props {
   src: string;
@@ -16,7 +16,7 @@ export default function FullScreenImage({ src, alt, onClose }: Props) {
         className="object-contain"
         alt={alt}
         src={src}
-        loader={datoCMSImageLoader}
+        loader={hygraphLoader}
       />
       <CloseButton className="fixed right-5 top-5" onClick={onClose} />
     </div>

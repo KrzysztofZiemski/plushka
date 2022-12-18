@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { HTMLAttributes } from "react";
 import { Product } from "../../types/product";
-import { datoCMSImageLoader } from "../../utils/next";
+import { hygraphLoader } from "../../utils/next";
 import ListElement from "../atom/list/ListElement";
 
 interface Props extends HTMLAttributes<HTMLLIElement> {
@@ -21,7 +21,7 @@ export default function HintListItem({ product, className, ...props }: Props) {
       <div className="relative h-9 w-9">
         {photo ? (
           <Image
-            loader={datoCMSImageLoader}
+            loader={hygraphLoader}
             src={photo.url}
             alt={photo.fileName}
             fill
