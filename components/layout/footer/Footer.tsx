@@ -2,6 +2,7 @@ import Link from "next/link";
 import React from "react";
 import {
   AllegroIcon,
+  EmailIcon,
   FacebookIcon,
   InstagramIcon,
   TwitterIcon,
@@ -17,12 +18,12 @@ interface Props {
 }
 export default function Footer({ categories }: Props) {
   return (
-    <footer className="flex bg-dark-background text-white p-16 place-content-center">
+    <footer className="flex-col-reverse sm:items-start gap-4 sm:flex-row flex bg-dark-background text-white p-16 place-content-center">
       <div>
         <h3 className="font-medium md:text-lg mb-8 mx-2 uppercase">Plishka</h3>
         <List>
           {categories
-            // .filter(({ parent }) => !parent)
+            // .filter(({ isMainCategory }) => isMainCategory)
             .map(({ id, slug, categoryName }) => (
               <ListElement key={id}>
                 <Link href={getPath("category")(slug)}>{categoryName}</Link>
@@ -74,6 +75,13 @@ export default function Footer({ categories }: Props) {
             </a>
           </ListElement>
         </List>
+        <a
+          className="flex items-center p-2 mt-2"
+          href="mailto:p.ziemska@gmail.pl"
+        >
+          <EmailIcon className="mr-3" />
+          <span>p.ziemska@gmail.pl</span>
+        </a>
       </div>
     </footer>
   );

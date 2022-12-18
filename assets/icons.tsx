@@ -8,6 +8,7 @@ import FacebookIcon from "./icons/facebook-icon.svg";
 import TwitterIcon from "./icons/twitter-icon.svg";
 import AllegroIcon from "./icons/allegro-icon.svg";
 import InstagramIcon from "./icons/instagram-icon.svg";
+import EmailIcon from "./icons/email.svg";
 
 export {
   MenuBurgerIcon,
@@ -20,4 +21,5 @@ export {
   TwitterIcon,
   AllegroIcon,
   InstagramIcon,
+  EmailIcon,
 };
