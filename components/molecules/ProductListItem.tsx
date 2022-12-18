@@ -6,6 +6,7 @@ import { Amount } from "../../utils/amount";
 import { hygraphLoader } from "../../utils/next";
 import { getPath } from "../../utils/routing";
 import BottomProduct from "../atom/bottomProduct/BottomProduct";
+import MainButton from "../atom/button/MainButton";
 
 interface Props extends HTMLAttributes<HTMLDivElement> {
   item: Product;
@@ -60,14 +61,15 @@ export default function ProductListItem({
         >
           {name}
         </h2>
-        <p>{shortDescription}</p>
-        <div className="font-medium text-lg text-right mb-9">
-          {new Amount(price, "PLN").price}
+        <p className="mb-9 max-h-60 overflow-auto">{shortDescription}</p>
+        <div className="w-full flex justify-between font-medium text-lg mt-auto">
+          <span>{new Amount(price, "PLN").price}</span>
+          <MainButton size="small">Zapytaj</MainButton>
         </div>
         <BottomProduct
           toggleFavourite={handleToggleFavourite}
           colors={colors}
-          className="mt-auto py-4 mt-auto"
+          className="py-4 mt-9"
           isFavourite={isFavourite}
         />
       </div>

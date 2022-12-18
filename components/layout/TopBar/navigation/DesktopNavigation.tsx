@@ -29,31 +29,24 @@ export default function DesktopNavigation({
 
   return (
     <div className="">
-      <List className="flex w-full grow border-b border-black">
+      <List className="flex w-full grow border-b border-black ">
         {categories.map((item, index) => {
           const isActive = index === activeIndexCategory;
 
           return (
-            <ListElement
-              key={item.id}
-              // style={{ marginRight: "5%", marginLeft: "5%" }}
-              className="flex items-end mx-5"
-            >
+            <ListElement key={item.id} className="flex items-end mx-5">
               <Link
                 href={getPath("category")(item.slug)}
                 className={` ${
                   isActive ? "text-primary" : ""
-                } font-semibold ease-out hover:text-primary whitespace-nowrap shrink text-lg  px-5 mb-2`}
+                } font-semibold ease-out hover:text-primary whitespace-nowrap shrink text-lg  px-2 xl:px-5 mb-2`}
               >
                 {item.categoryName}
               </Link>
             </ListElement>
           );
         })}
-        <ListElement
-          // style={{ marginRight: "5%", marginLeft: "5%" }}
-          className="flex items-end mx-5"
-        >
+        <ListElement className="flex items-end mx-5">
           <Link
             href={getPath("contact")("")}
             className={` ${

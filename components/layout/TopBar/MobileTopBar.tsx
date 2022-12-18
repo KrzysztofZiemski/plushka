@@ -33,16 +33,11 @@ export default function MobileTopBar({
   const isEmptyResults = search.length >= 3 && filtered.length === 0;
 
   return (
-    <div className="sticky top-0 z-10 bg-white main-shadow w-full flex items-center justify-between gap-3 px-2 py-2 mb-3 md:hidden">
+    <div className="sticky top-0 z-10 bg-white main-shadow w-full flex items-center justify-between gap-3 px-2 py-2 mb-3 lg:hidden">
       <Link href="/" className="flex items-center shrink-0 ">
-        <Image
-          src={logo}
-          alt="logo Plushka"
-          loader={hygraphLoader}
-          className="h-14 w-auto"
-        />
+        <Image src={logo} alt="logo Plushka" className="h-14 w-auto" />
       </Link>
-      <div className="flex grow gap-3 max-w-sm md:hidden ">
+      <div className="flex grow gap-3 max-w-sm ">
         <div className={`grow ${styles.searchContainer}`}>
           <MainInput
             AdormentEnd={<SearchIcon />}

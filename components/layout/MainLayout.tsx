@@ -32,7 +32,7 @@ export default function MainLayout({ products, children, categories }: Props) {
   return (
     <div className="min-h-screen flex flex-col">
       <TopBar products={products || []} categories={rootCategories} />
-      <main className="w-full max-w-6xl grow md:mx-4 xl:mx-auto mb-10">
+      <main className="w-full max-w-6xl grow md:px-4 xl:mx-auto mb-10">
         {isLoading ? <Loader className="mx-auto" /> : children}
       </main>
 

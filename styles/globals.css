@@ -64,6 +64,24 @@ a {
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+  background-color: #E1EBFF;
+  ;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 0px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-primary);
+  border-radius: 0px;
+}
+
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;

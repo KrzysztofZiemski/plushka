@@ -36,7 +36,7 @@ export default function DesktopTopBar({
   const isEmptyResults = search.length >= 3 && filtered.length === 0;
 
   return (
-    <div className="hidden w-full bg-white z-10 px-6 py-6  md:block">
+    <div className="hidden w-full bg-white z-10 px-6 py-6 lg:block">
       <div className="flex gap-3 w-full">
         <Link href={"/"} className="shrink-0" style={{ marginRight: "8%" }}>
           <Image src={logo} alt="logo Plushka" className="h-40 w-auto" />

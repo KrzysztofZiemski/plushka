@@ -45,12 +45,7 @@ export default function MobileNavigation({
       }`}
     >
       <div className="flex p-2">
-        <Image
-          src={logo}
-          alt="logo Plushka"
-          loader={hygraphLoader}
-          className="h-14 w-auto "
-        />
+        <Image src={logo} alt="logo Plushka" className="h-14 w-auto " />
         <CloseButton
           className="ml-auto bg-transparent top-3.5 right-3"
           aria-label="close menu"
