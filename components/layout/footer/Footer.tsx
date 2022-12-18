@@ -20,7 +20,7 @@ export default function Footer({ categories }: Props) {
   return (
     <footer className="flex-col-reverse sm:items-start gap-4 sm:flex-row flex bg-dark-background text-white p-16 place-content-center">
       <div>
-        <h3 className="font-medium md:text-lg mb-8 mx-2 uppercase">Plishka</h3>
+        <h3 className="font-medium md:text-lg mb-8 mx-2 uppercase">Plushka</h3>
         <List>
           {categories
             // .filter(({ isMainCategory }) => isMainCategory)

@@ -10,6 +10,13 @@ import ContextProviders from "../context";
 import { useVH } from "../hooks/useVH";
 import "../styles/globals.css";
 import { GetLayout } from "../types/page";
+import logo from "../assets/logo.png";
+import { Roboto } from "@next/font/google";
+
+const roboto = Roboto({
+  weight: ["400", "500", "700"],
+  subsets: ["latin"],
+});
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: GetLayout;
@@ -23,10 +30,22 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
 
   useVH();
 
+  const description =
+    "Rękodzieło z pasją. Ręcznie robione przytulanki, biżuteria, chusty. Wszystkie wyroby są trwałe oraz wysokiej jakości. Specjalne wzory na zamówienie.";
+
   return (
     <ApolloProvider client={client}>
       <ContextProviders>
         <Head>
+          <meta
+            name="keywords"
+            content="rękodzieło, handmade, bizuteria, maskotki, zabawki, dziecko, pomysł na prezent, ręcznie robione"
+          />
+          <title>Plushka - rękodzieło z pasją.</title>
+          <meta name="description" content={description} />
+          <meta property="og:title" content="Plushka - Rękodzieło z pasją" />
+          <meta property="og:image" content={logo.src} />
+          <meta property="og:description" content={description} />
           <link
             rel="apple-touch-icon"
             sizes="180x180"
@@ -52,6 +71,7 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
           <meta property="og:type" content="website" />
         </Head>
         <CookiesBanner />
+
         {getLayout(<Component {...pageProps} />, pageProps)}
         <ToastContainer />
       </ContextProviders>

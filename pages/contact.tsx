@@ -14,12 +14,10 @@ import * as yup from "yup";
 import { getCategories } from "../api/categories";
 import { sendMessage } from "../api/message";
 import { getProducts } from "../api/products";
-import { CloseIcon } from "../assets/icons";
 import mailbox from "../assets/inbox.png";
 import logo from "../assets/logo.png";
 import CloseButton from "../components/atom/button/closeButton";
 import MainButton from "../components/atom/button/MainButton";
-import TextButton from "../components/atom/button/textButton";
 import MaterialInput from "../components/atom/input/MaterialInput";
 import TextArea from "../components/atom/input/TextArea";
 import PageTitle from "../components/atom/pageTitle/pageTitle";
@@ -126,14 +124,18 @@ export default function ContactPage({ products }: Props) {
     }
   };
 
+  const pageDescription = `Kontakt | Rękodzieło z pasją. Ręcznie robione przytulanki, biżuteria, chusty. Wszystkie wyroby są trwałe oraz wysokiej jakości. Specjalne wzory na zamówienie.`;
   return (
     <>
       <Head>
-        <title>Plushka - rękodzieło z pasją. Kontakt</title>
-        <meta name="description" content={"Wyślij wiadomość"} />
-        <meta property="og:title" content="Plushka - Rękodzieło z pasją" />
+        <title>Kontakt Plushka - Rękodzieło z pasjąt</title>
+        <meta name="description" content={pageDescription} />
+        <meta
+          property="og:title"
+          content="Kontakt Plushka - Rękodzieło z pasją"
+        />
         <meta property="og:image" content={logo.src} />
-        <meta property="og:description" content={"Wyślij wiadomość"} />
+        <meta property="og:description" content={pageDescription} />
       </Head>
       <PageTitle className="justify-center">Kontakt</PageTitle>
       <div className="w-full p-5 m">
@@ -144,7 +146,7 @@ export default function ContactPage({ products }: Props) {
                 <div className="relative w-24 h-24 mb-2 flex">
                   <Image
                     loader={hygraphLoader}
-                    src={askFor?.photos[0].url}
+                    src={askFor.photos[0].url}
                     alt={`pytanie o ${askFor.name}`}
                     loading="lazy"
                     fill
@@ -195,25 +197,29 @@ export default function ContactPage({ products }: Props) {
             </form>
           </>
         )}
-        {status === "success" && (
-          <div className="w-60 mx-auto flex flex-col gap-3">
-            <Image
-              className="mx-auto"
-              src={mailbox}
-              width={100}
-              height={100}
-              alt="sukces sended mail icon"
-            />
-            <p className="text-center">Wyszłano wiadomość</p>
-            <MainButton
-              type="button"
-              onClick={() => setStatus("idle")}
-              className="mt-9"
-            >
-              OK
-            </MainButton>
-          </div>
-        )}
+
+        <div
+          className={`w-60 mx-auto flex flex-col gap-3 ${
+            status === "success" ? "flex" : "hidden "
+          }`}
+        >
+          <Image
+            loading="lazy"
+            className="mx-auto"
+            src={mailbox}
+            width={100}
+            height={100}
+            alt="sukces sended mail icon"
+          />
+          <p className="text-center">Wysłano wiadomość</p>
+          <MainButton
+            type="button"
+            onClick={() => setStatus("idle")}
+            className="mt-9"
+          >
+            OK
+          </MainButton>
+        </div>
       </div>
     </>
   );

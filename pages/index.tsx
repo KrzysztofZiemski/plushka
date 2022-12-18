@@ -20,11 +20,15 @@ export default function HomePage({ products }: Props) {
   const { favourites, toggle } = useFavourites();
 
   const description =
-    "Rękodzieło z pasją. Ręcznie robione przytulanki, biżuteria, chusty. Wyroby gotowe jak i na zamówienie ";
+    "Rękodzieło z pasją. Ręcznie robione przytulanki, biżuteria, chusty. Wszystkie wyroby są trwałe oraz wysokiej jakości. Specjalne wzory na zamówienie.";
 
   return (
     <>
       <Head>
+        <meta
+          name="keywords"
+          content="rękodzieło, handmade, bizuteria, maskotki, zabawki, dziecko, pomysł na prezent, ręcznie robione"
+        />
         <title>Plushka - rękodzieło z pasją.</title>
         <meta name="description" content={description} />
         <meta property="og:title" content="Plushka - Rękodzieło z pasją" />

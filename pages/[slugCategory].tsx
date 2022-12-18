@@ -36,13 +36,12 @@ export default function CategoryPage({ products, categories }: Props) {
     );
   }, [products, slugCategory]);
 
-  const description = `${pageCategory?.categoryName} | Rękodzieło z pasją. Przytulanki, zabawki, biżuteria.`;
+  const description = `${pageCategory?.categoryName} | Rękodzieło z pasją. Ręcznie ${pageCategory?.categoryName}. Wszystkie wyroby są trwałe oraz wysokiej jakości. Specjalne wzory na zamówienie.`;
 
   return (
     <>
       <Head>
         <title>{`Plushka - ${pageCategory?.categoryName || ""}`}</title>
-        <meta name="description" content={description} />
         <meta
           property="og:title"
           content={`Plushka - ${pageCategory?.categoryName}`}
