@@ -29,6 +29,9 @@ export default function Footer({ categories }: Props) {
               </ListElement>
             ))}
           <ListElement>
+            <Link href={getPath("contact")("")}>Kontakt</Link>
+          </ListElement>
+          <ListElement>
             <Link href={getPath("privacy")("")}>Polityka prywatności</Link>
           </ListElement>
         </List>

@@ -19,7 +19,10 @@ import { useEffect, useState } from "react";
 import { validator } from "../utils/validators";
 import { ContactMessage } from "../types/message";
 import { sendMessage } from "../api/message";
-import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
+import {
+  GoogleReCaptchaProvider,
+  useGoogleReCaptcha,
+} from "react-google-recaptcha-v3";
 import { RequestStatus } from "../types/fetch";
 import { toast } from "react-toastify";
 import mailbox from "../assets/inbox.png";
@@ -168,9 +171,16 @@ export const getStaticProps: GetStaticProps = async () => {
 };
 
 const getLayout: GetLayout = (page, pageProps: Props) => (
-  <MainLayout products={pageProps.products} categories={pageProps.categories}>
-    {page}
-  </MainLayout>
+  <GoogleReCaptchaProvider
+    reCaptchaKey={process.env.NEXT_PUBLIC_RECAPTCHA || ""}
+    scriptProps={{
+      async: true,
+    }}
+  >
+    <MainLayout products={pageProps.products} categories={pageProps.categories}>
+      {page}
+    </MainLayout>
+  </GoogleReCaptchaProvider>
 );
 
 ContactPage.getLayout = getLayout;
